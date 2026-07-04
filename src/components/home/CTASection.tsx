@@ -19,11 +19,11 @@ export default function CTASection() {
         alt=""
         fill
         sizes="100vw"
-        className="object-cover object-[70%_center] opacity-90"
+        className="object-cover object-[60%_center] opacity-90"
       />
       {/* Degradados para legibilidad e integración con el negro */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-ink/20"
+        className="absolute inset-0 bg-gradient-to-r from-ink via-ink/60 to-transparent"
         aria-hidden
       />
       <div
