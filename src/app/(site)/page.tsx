@@ -7,11 +7,9 @@ export const revalidate = 60;
 
 export default async function HomePage() {
   const vehicles = await getAllVehicles();
-  const featured =
-    vehicles.find((v) => v.status !== "vendido") ?? vehicles[0] ?? null;
   return (
     <>
-      <Hero featured={featured} />
+      <Hero />
       <ShowroomReveal vehicles={vehicles} />
       <CTASection />
     </>

@@ -59,8 +59,8 @@ export default function CTASection() {
           </h2>
 
           <p className="mt-7 max-w-md text-lg leading-relaxed text-white/80">
-            Escríbenos y coordinamos una visita. Lo evaluamos y te damos una oferta
-            directa, o lo consignamos para venderlo por ti.
+            Escríbenos y acércate con tu auto a nuestro local. Lo evaluamos en el
+            momento y lo consignamos para venderlo por ti.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
