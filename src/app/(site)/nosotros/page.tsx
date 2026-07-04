@@ -11,7 +11,7 @@ import { AMBIENT } from "@/lib/images";
 export const metadata: Metadata = {
   title: "Nosotros",
   description:
-    "MOVITRACK es una automotora de Curicó especializada en compra, venta, consignación y financiamiento de vehículos en la Región del Maule.",
+    "MOVITRACK es una automotora de Curicó especializada en compra, venta y consignación de vehículos en la Región del Maule.",
 };
 
 const VALUES = [
@@ -61,10 +61,10 @@ export default function NosotrosPage() {
           <h1 className="mt-6 max-w-2xl text-balance font-display text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
             Una automotora de Curicó, para quienes prefieren el trato directo.
           </h1>
-          <p className="mt-5 max-w-xl text-white/55">
-            Compramos, vendemos, consignamos y financiamos vehículos en Curicó y la
-            Región del Maule. Trabajamos con trato directo y cercano, atendiéndote
-            personalmente en cada paso.
+          <p className="mt-5 max-w-xl text-white/75">
+            Compramos, vendemos y consignamos vehículos en Curicó y la Región del
+            Maule. Trabajamos con trato directo y cercano, atendiéndote personalmente
+            en cada paso.
           </p>
         </Container>
       </div>
@@ -78,7 +78,7 @@ export default function NosotrosPage() {
                 <h3 className="mt-4 font-display text-lg font-semibold tracking-tight">
                   {title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/55">{description}</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/75">{description}</p>
               </div>
             ))}
           </div>
@@ -91,11 +91,11 @@ export default function NosotrosPage() {
             <h2 className="font-display text-3xl font-semibold tracking-tight">
               Visítanos en Curicó
             </h2>
-            <p className="mt-4 max-w-md text-white/55">{CONTACT.address}</p>
-            <p className="mt-2 font-data text-sm uppercase tracking-[0.1em] text-white/40">
+            <p className="mt-4 max-w-md text-white/75">{CONTACT.address}</p>
+            <p className="mt-2 font-data text-sm uppercase tracking-[0.1em] text-white/60">
               {CONTACT.hours}
             </p>
-            <p className="mt-1 font-data text-sm uppercase tracking-[0.1em] text-white/40">
+            <p className="mt-1 font-data text-sm uppercase tracking-[0.1em] text-white/60">
               {CONTACT.phoneDisplay}
             </p>
           </div>

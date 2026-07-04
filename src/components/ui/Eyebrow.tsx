@@ -15,7 +15,7 @@ export default function Eyebrow({
     <div
       className={cn(
         "flex items-center gap-3 font-data text-[11px] uppercase tracking-[0.28em]",
-        light ? "text-ink/50" : "text-white/45",
+        light ? "text-ink/50" : "text-white/65",
         className
       )}
     >

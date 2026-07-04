@@ -107,12 +107,12 @@ export default async function VehiclePage({
       <JsonLd data={vehicleSchema} />
       <JsonLd data={breadcrumbSchema} />
       <Container>
-        <nav className="flex flex-wrap items-center gap-2 font-data text-[11px] uppercase tracking-[0.14em] text-white/40">
+        <nav className="flex flex-wrap items-center gap-2 font-data text-[11px] uppercase tracking-[0.14em] text-white/60">
           <Link href="/catalogo" className="hover:text-white">
             Catálogo
           </Link>
           <span>/</span>
-          <span className="text-white/60">{vehicle.brand}</span>
+          <span className="text-white/80">{vehicle.brand}</span>
           <span>/</span>
           <span className="text-white">{vehicle.model}</span>
         </nav>
@@ -124,24 +124,24 @@ export default async function VehiclePage({
 
           <div className="lg:pt-2">
             <StatusTag status={vehicle.status} />
-            <p className="mt-4 font-data text-xs uppercase tracking-[0.16em] text-white/40">
+            <p className="mt-4 font-data text-xs uppercase tracking-[0.16em] text-white/60">
               {vehicle.brand}
             </p>
             <h1 className="mt-1 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-              {vehicle.model} <span className="text-white/50">{vehicle.version}</span>
+              {vehicle.model} <span className="text-white/70">{vehicle.version}</span>
             </h1>
             <p className="mt-4 font-display text-3xl font-semibold text-signal">
               {formatCLP(vehicle.price)}
             </p>
 
-            <p className="mt-6 text-sm leading-relaxed text-white/60">{vehicle.description}</p>
+            <p className="mt-6 text-sm leading-relaxed text-white/80">{vehicle.description}</p>
 
             <div className="mt-8 grid grid-cols-2 gap-4 border-y border-white/10 py-6">
               {SPECS(vehicle).map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-start gap-3">
                   <Icon size={18} className="mt-0.5 shrink-0 text-signal" />
                   <div>
-                    <p className="font-data text-[10px] uppercase tracking-[0.14em] text-white/40">
+                    <p className="font-data text-[10px] uppercase tracking-[0.14em] text-white/60">
                       {label}
                     </p>
                     <p className="mt-0.5 text-sm text-white">{value}</p>
@@ -150,12 +150,12 @@ export default async function VehiclePage({
               ))}
             </div>
 
-            <p className="mt-6 font-data text-xs uppercase tracking-[0.14em] text-white/40">
+            <p className="mt-6 font-data text-xs uppercase tracking-[0.14em] text-white/60">
               {vehicle.engine} · {vehicle.color} · {vehicle.traction}
             </p>
 
             {vehicle.status === "vendido" ? (
-              <p className="mt-8 border border-white/15 px-4 py-3 text-sm text-white/50">
+              <p className="mt-8 border border-white/15 px-4 py-3 text-sm text-white/70">
                 Este vehículo ya fue vendido. Explora otras unidades similares en el catálogo.
               </p>
             ) : (

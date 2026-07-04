@@ -44,7 +44,7 @@ export default function FAQAccordion({ items }: { items: FAQItem[] }) {
                   )}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-2xl text-sm leading-relaxed text-white/55">
+                    <p className="max-w-2xl text-sm leading-relaxed text-white/75">
                       {item.answer}
                     </p>
                   </div>

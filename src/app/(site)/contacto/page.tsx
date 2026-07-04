@@ -47,7 +47,7 @@ export default function ContactoPage() {
         <h1 className="mt-6 max-w-2xl text-balance font-display text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
           Conversemos en persona, no con un formulario.
         </h1>
-        <p className="mt-5 max-w-lg text-white/55">
+        <p className="mt-5 max-w-lg text-white/75">
           Escríbenos por WhatsApp o llámanos para coordinar una visita a nuestro
           local en Curicó. Te atendemos personalmente.
         </p>
@@ -58,7 +58,7 @@ export default function ContactoPage() {
               const content = (
                 <>
                   <Icon size={20} className="text-signal" />
-                  <p className="mt-4 font-data text-[11px] uppercase tracking-[0.16em] text-white/40">
+                  <p className="mt-4 font-data text-[11px] uppercase tracking-[0.16em] text-white/60">
                     {label}
                   </p>
                   <p className="mt-1 text-sm text-white">{value}</p>
@@ -88,7 +88,7 @@ export default function ContactoPage() {
               className="block border border-white/10 p-6 transition-colors hover:border-signal sm:col-span-2"
             >
               <InstagramGlyph size={20} className="text-signal" />
-              <p className="mt-4 font-data text-[11px] uppercase tracking-[0.16em] text-white/40">
+              <p className="mt-4 font-data text-[11px] uppercase tracking-[0.16em] text-white/60">
                 Instagram
               </p>
               <p className="mt-1 text-sm text-white">@automotriz_movitrack</p>

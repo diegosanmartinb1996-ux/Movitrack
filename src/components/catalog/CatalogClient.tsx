@@ -113,7 +113,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
 
       <div>
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
-          <p className="font-data text-xs uppercase tracking-[0.14em] text-white/45">
+          <p className="font-data text-xs uppercase tracking-[0.14em] text-white/65">
             {filtered.length} vehículo{filtered.length !== 1 && "s"} en venta
           </p>
 
@@ -147,7 +147,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
                 <p className="font-display text-2xl font-semibold">
                   Pronto, nuevo stock
                 </p>
-                <p className="max-w-sm text-sm text-white/50">
+                <p className="max-w-sm text-sm text-white/70">
                   Estamos preparando nuestros vehículos. Escríbenos por WhatsApp y
                   te contamos qué tenemos disponible.
                 </p>
@@ -155,7 +155,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
             ) : (
               <>
                 <p className="font-display text-2xl font-semibold">Sin resultados</p>
-                <p className="max-w-sm text-sm text-white/50">
+                <p className="max-w-sm text-sm text-white/70">
                   No hay vehículos que coincidan con estos filtros. Prueba ajustando
                   el precio, año o marca.
                 </p>
@@ -181,7 +181,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
           />
           <div className="absolute inset-y-0 right-0 w-full max-w-xs overflow-y-auto bg-ink px-6 py-6">
             <div className="flex items-center justify-between pb-4">
-              <span className="font-data text-xs uppercase tracking-[0.2em] text-white/50">
+              <span className="font-data text-xs uppercase tracking-[0.2em] text-white/70">
                 Filtros
               </span>
               <button onClick={() => setMobileFiltersOpen(false)} aria-label="Cerrar filtros">

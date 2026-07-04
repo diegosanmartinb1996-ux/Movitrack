@@ -37,7 +37,7 @@ export default function PageHero({
         <h1 className="mt-6 max-w-2xl text-balance font-display text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
           {title}
         </h1>
-        <p className="mt-5 max-w-lg text-white/55">{description}</p>
+        <p className="mt-5 max-w-lg text-white/75">{description}</p>
       </Container>
     </div>
   );

@@ -42,7 +42,7 @@ export default function VehicleMedia({
         <span className="font-display text-xl font-semibold uppercase tracking-tight text-white/85 md:text-2xl">
           {label}
         </span>
-        <span className="font-data text-[10px] uppercase tracking-[0.2em] text-white/35">
+        <span className="font-data text-[10px] uppercase tracking-[0.2em] text-white/55">
           Foto próximamente
         </span>
       </div>

@@ -70,16 +70,16 @@ export default function VehicleCard({
 
       <div className="mt-5 flex items-start justify-between gap-4">
         <div>
-          <p className="font-data text-[11px] uppercase tracking-[0.16em] text-white/40">
+          <p className="font-data text-[11px] uppercase tracking-[0.16em] text-white/60">
             {vehicle.brand}
           </p>
           <h3 className="mt-1 font-display text-xl font-semibold tracking-tight">
-            {vehicle.model} <span className="text-white/50">{vehicle.version}</span>
+            {vehicle.model} <span className="text-white/70">{vehicle.version}</span>
           </h3>
-          <p className="mt-2 font-data text-xs uppercase tracking-[0.1em] text-white/40">
+          <p className="mt-2 font-data text-xs uppercase tracking-[0.1em] text-white/60">
             {vehicle.year} · {formatKm(vehicle.km)} · {vehicle.transmission}
           </p>
-          <p className="mt-1 text-xs text-white/35">{vehicle.featureTag}</p>
+          <p className="mt-1 text-xs text-white/55">{vehicle.featureTag}</p>
         </div>
         <p className="whitespace-nowrap font-display text-lg font-semibold text-signal">
           {formatCLP(vehicle.price)}

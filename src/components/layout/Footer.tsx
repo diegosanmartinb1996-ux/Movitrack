@@ -40,15 +40,15 @@ export default function Footer() {
               MOVITRACK
             </span>
           </div>
-          <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/50">
-            Automotora especializada en compra, venta, consignación y financiamiento
-            de vehículos en Curicó, Región del Maule.
+          <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/70">
+            Automotora especializada en compra, venta y consignación de vehículos
+            en Curicó, Región del Maule.
           </p>
           <a
             href={CONTACT.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 font-data text-[11px] uppercase tracking-[0.16em] text-white/50 hover:text-signal"
+            className="mt-6 inline-flex items-center gap-2 font-data text-[11px] uppercase tracking-[0.16em] text-white/70 hover:text-signal"
           >
             <InstagramGlyph />
             @automotriz_movitrack
@@ -66,7 +66,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/60 transition-colors hover:text-white"
+                      className="text-sm text-white/80 transition-colors hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -79,7 +79,7 @@ export default function Footer() {
       </Container>
 
       <div className="border-t border-white/10">
-        <Container className="flex flex-col gap-4 py-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
+        <Container className="flex flex-col gap-4 py-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} MOVITRACK — {CONTACT.address}
           </p>

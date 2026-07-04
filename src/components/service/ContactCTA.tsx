@@ -18,7 +18,7 @@ export default function ContactCTA({
         <h2 className="max-w-xl text-balance font-display text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
           {title}
         </h2>
-        <p className="mt-4 max-w-md text-white/55">{description}</p>
+        <p className="mt-4 max-w-md text-white/75">{description}</p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <a
             href={whatsappLink(whatsappMessage)}

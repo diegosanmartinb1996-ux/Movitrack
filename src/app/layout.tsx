@@ -49,13 +49,13 @@ export const metadata: Metadata = {
     template: "%s · MOVITRACK",
   },
   description:
-    "MOVITRACK: compra, venta, consignación y financiamiento de vehículos en Curicó, Región del Maule.",
+    "MOVITRACK: compra, venta y consignación de vehículos en Curicó, Región del Maule.",
   keywords: [
     "automotora Curicó",
     "comprar auto usado Curicó",
     "vender auto Maule",
     "consignar vehículo",
-    "financiamiento automotriz Chile",
+    "autos usados Región del Maule",
   ],
   openGraph: {
     type: "website",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "MOVITRACK",
     title: "MOVITRACK — Automotora en Curicó",
     description:
-      "Compra, venta, consignación y financiamiento de vehículos en Curicó. Explora el catálogo.",
+      "Compra, venta y consignación de vehículos en Curicó. Explora el catálogo.",
   },
 };
 

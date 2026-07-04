@@ -21,7 +21,7 @@ export default async function CatalogoPage() {
         <h1 className="mt-6 max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
           Nuestros vehículos
         </h1>
-        <p className="mt-4 max-w-xl text-white/55">
+        <p className="mt-4 max-w-xl text-white/75">
           Filtra por lo que necesitas y coordina una visita cuando encuentres el
           tuyo.
         </p>

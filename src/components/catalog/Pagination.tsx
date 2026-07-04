@@ -40,7 +40,7 @@ export default function Pagination({
           onClick={() => goTo(p)}
           className={cn(
             "flex h-9 w-9 items-center justify-center font-data text-xs transition-colors",
-            p === page ? "bg-signal text-white" : "text-white/60 hover:text-white"
+            p === page ? "bg-signal text-white" : "text-white/80 hover:text-white"
           )}
         >
           {p}

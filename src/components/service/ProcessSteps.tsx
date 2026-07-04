@@ -23,7 +23,7 @@ export default function ProcessSteps({
                 <h3 className="font-display text-lg font-semibold tracking-tight">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/55">{step.description}</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/75">{step.description}</p>
               </div>
             </div>
           ))}

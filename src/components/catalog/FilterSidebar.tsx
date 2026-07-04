@@ -12,7 +12,7 @@ const YEAR_FLOORS = [2023, 2022, 2021, 2020, 2019, 2018];
 function FilterGroup({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="border-b border-white/10 py-6 first:pt-0">
-      <h3 className="font-data text-[11px] uppercase tracking-[0.2em] text-white/45">{title}</h3>
+      <h3 className="font-data text-[11px] uppercase tracking-[0.2em] text-white/65">{title}</h3>
       <div className="mt-4 space-y-2.5">{children}</div>
     </div>
   );

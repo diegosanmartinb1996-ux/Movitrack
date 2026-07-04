@@ -26,7 +26,7 @@ const STATUS_MAP: Record<VehicleStatus, { label: string; className: string }> = 
   },
   vendido: {
     label: "Vendido",
-    className: "bg-ink text-white/50 border border-white/10",
+    className: "bg-ink text-white/70 border border-white/10",
   },
 };
 

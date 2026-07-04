@@ -11,7 +11,7 @@ const TICKER_ITEMS = [
   "COMPRA",
   "VENTA",
   "CONSIGNACIÓN",
-  "FINANCIAMIENTO",
+  "RECEPCIÓN EN PARTE DE PAGO",
   "CURICÓ · REGIÓN DEL MAULE",
 ];
 
@@ -56,7 +56,7 @@ export default function Hero() {
           animate="show"
           custom={0}
           variants={fadeUp}
-          className="flex items-center gap-3 font-data text-[11px] uppercase tracking-[0.32em] text-white/45"
+          className="flex items-center gap-3 font-data text-[11px] uppercase tracking-[0.32em] text-white/65"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-signal" />
           Automotora en Curicó, Región del Maule
@@ -79,9 +79,9 @@ export default function Hero() {
           animate="show"
           custom={2}
           variants={fadeUp}
-          className="mt-8 max-w-xl text-lg leading-relaxed text-white/60"
+          className="mt-8 max-w-xl text-lg leading-relaxed text-white/80"
         >
-          Compra, venta, consignación y financiamiento de vehículos seleccionados.
+          Compra, venta y consignación de vehículos seleccionados en Curicó.
           Explora nuestro catálogo y coordina tu visita.
         </motion.p>
 
@@ -107,7 +107,7 @@ export default function Hero() {
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
               <span
                 key={i}
-                className="flex items-center gap-10 font-data text-xs uppercase tracking-[0.2em] text-white/35"
+                className="flex items-center gap-10 font-data text-xs uppercase tracking-[0.2em] text-white/55"
               >
                 {item}
                 <span className="text-signal">/</span>
