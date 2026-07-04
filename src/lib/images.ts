@@ -8,6 +8,7 @@ const U = (id: string, w = 1600) =>
 
 export const AMBIENT = {
   homeHero: U("photo-1503376780353-7e6692767b70"), // deportivo negro, contraluz
+  homeCta: U("photo-1580273916550-e323be2ae537"), // BMW M4 al atardecer, premium
   process: U("photo-1517524008697-84bbe3c3fd98"), // taller / detalle mecánico
   about: U("photo-1552519507-da3b142c6e3d"), // auto premium en estudio
   consignacion: U("photo-1494976388531-d1058494cdd8"), // vista trasera en carretera

@@ -15,15 +15,15 @@ export default function CTASection() {
     <section className="relative flex min-h-[85vh] items-center overflow-hidden border-t border-white/10 bg-ink">
       {/* Imagen de fondo integrada */}
       <Image
-        src={AMBIENT.consignacion}
+        src={AMBIENT.homeCta}
         alt=""
         fill
         sizes="100vw"
-        className="object-cover object-right opacity-80"
+        className="object-cover object-[70%_center] opacity-90"
       />
       {/* Degradados para legibilidad e integración con el negro */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/20"
+        className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-ink/20"
         aria-hidden
       />
       <div
