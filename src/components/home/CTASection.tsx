@@ -12,33 +12,53 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function CTASection() {
   return (
-    <section className="relative overflow-hidden border-t border-white/10 bg-ink py-24 md:py-32">
-      <div className="bg-grid absolute inset-0 opacity-20" aria-hidden />
+    <section className="relative flex min-h-[85vh] items-center overflow-hidden border-t border-white/10 bg-ink">
+      {/* Imagen de fondo integrada */}
+      <Image
+        src={AMBIENT.consignacion}
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover object-right opacity-80"
+      />
+      {/* Degradados para legibilidad e integración con el negro */}
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/20"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink to-transparent"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink to-transparent"
+        aria-hidden
+      />
       <div
         className="absolute -left-40 top-1/2 h-[55vh] w-[55vh] -translate-y-1/2 rounded-full bg-signal/12 blur-[160px]"
         aria-hidden
       />
 
-      <Container className="relative grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-        {/* Statement + acciones */}
+      <Container className="relative py-28 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
+          className="max-w-2xl"
         >
           <div className="flex items-center gap-3 font-data text-[11px] uppercase tracking-[0.3em] text-signal">
             <span className="h-px w-8 bg-signal" aria-hidden />
             Vende o consigna con nosotros
           </div>
 
-          <h2 className="mt-7 font-display text-5xl font-semibold leading-[0.95] tracking-tight md:text-6xl lg:text-[5rem]">
+          <h2 className="mt-7 font-display text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl">
             Hablemos
             <br />
             de tu <span className="text-signal">auto.</span>
           </h2>
 
-          <p className="mt-7 max-w-md text-lg leading-relaxed text-white/75">
+          <p className="mt-7 max-w-md text-lg leading-relaxed text-white/80">
             Escríbenos y coordinamos una visita. Lo evaluamos y te damos una oferta
             directa, o lo consignamos para venderlo por ti.
           </p>
@@ -55,16 +75,26 @@ export default function CTASection() {
             </a>
             <a
               href={`tel:${CONTACT.phoneNumber}`}
-              className="inline-flex items-center justify-center gap-2 border border-white/25 px-7 py-4 font-data text-xs uppercase tracking-[0.14em] text-white transition-colors hover:border-signal hover:text-signal"
+              className="inline-flex items-center justify-center gap-2 border border-white/30 bg-ink/40 px-7 py-4 font-data text-xs uppercase tracking-[0.14em] text-white backdrop-blur-sm transition-colors hover:border-signal hover:text-signal"
             >
               <Phone size={15} />
               {CONTACT.phoneDisplay}
             </a>
           </div>
 
+          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/15 pt-6">
+            <span className="font-data text-[11px] uppercase tracking-[0.14em] text-white/70">
+              {CONTACT.address}
+            </span>
+            <span className="hidden h-3 w-px bg-white/20 sm:block" aria-hidden />
+            <span className="font-data text-[11px] uppercase tracking-[0.14em] text-white/70">
+              {CONTACT.hours}
+            </span>
+          </div>
+
           <Link
             href="/consignacion"
-            className="group mt-7 inline-flex items-center gap-1.5 font-data text-[11px] uppercase tracking-[0.16em] text-white/60 transition-colors hover:text-white"
+            className="group mt-7 inline-flex items-center gap-1.5 font-data text-[11px] uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-white"
           >
             Cómo funciona la consignación
             <ArrowUpRight
@@ -72,38 +102,6 @@ export default function CTASection() {
               className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </Link>
-        </motion.div>
-
-        {/* Imagen enmarcada con dato local */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, ease }}
-          className="bracket-frame relative aspect-[4/3] overflow-hidden lg:aspect-[5/4]"
-        >
-          <Image
-            src={AMBIENT.consignacion}
-            alt=""
-            fill
-            sizes="(max-width: 1024px) 100vw, 45vw"
-            className="object-cover"
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"
-            aria-hidden
-          />
-          <div className="absolute bottom-0 left-0 p-6 md:p-7">
-            <p className="font-data text-[10px] uppercase tracking-[0.24em] text-white/60">
-              Visítanos
-            </p>
-            <p className="mt-1.5 font-display text-lg font-semibold leading-snug md:text-xl">
-              {CONTACT.address}
-            </p>
-            <p className="mt-1 font-data text-[11px] uppercase tracking-[0.14em] text-white/60">
-              {CONTACT.hours}
-            </p>
-          </div>
         </motion.div>
       </Container>
     </section>
