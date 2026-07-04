@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# El runtime de Next.js de Netlify (@netlify/plugin-nextjs) se instala y
+# configura automáticamente al detectar Next.js — no es necesario declararlo.

@@ -1,0 +1,313 @@
+import type { VehicleStatus } from "@/components/ui/StatusTag";
+
+export type Vehicle = {
+  id: string;
+  slug: string;
+  brand: string;
+  model: string;
+  version: string;
+  year: number;
+  price: number;
+  km: number;
+  fuel: "Bencina" | "Diésel" | "Híbrido" | "Eléctrico";
+  transmission: "Automática" | "Manual";
+  traction: "4x2" | "4x4" | "AWD";
+  color: string;
+  bodyType: "SUV" | "Sedán" | "Camioneta" | "Hatchback" | "Van";
+  status: VehicleStatus;
+  engine: string;
+  featureTag: string;
+  tone: string;
+  description: string;
+  views: number;
+  daysListed: number;
+  /** Foto URLs. Vacío/ausente = usa placeholder. Provisto por Sanity. */
+  images?: string[];
+};
+
+export const vehicles: Vehicle[] = [
+  {
+    id: "v1",
+    slug: "mercedes-benz-glc-250-2018",
+    brand: "Mercedes-Benz",
+    model: "GLC 250",
+    version: "4MATIC Sport",
+    year: 2018,
+    price: 24990000,
+    km: 58200,
+    fuel: "Bencina",
+    transmission: "Automática",
+    traction: "AWD",
+    color: "Gris Selenita",
+    bodyType: "SUV",
+    status: "destacado",
+    engine: "2.0L Turbo, 211 hp",
+    featureTag: "Mantención en agencia",
+    tone: "from-zinc-700 via-zinc-900 to-black",
+    description:
+      "SUV premium con tracción integral 4MATIC y cuero Nappa. Mantenciones en agencia al día.",
+    views: 412,
+    daysListed: 6,
+  },
+  {
+    id: "v2",
+    slug: "jeep-grand-cherokee-limited-2019",
+    brand: "Jeep",
+    model: "Grand Cherokee",
+    version: "Limited",
+    year: 2019,
+    price: 21490000,
+    km: 71400,
+    fuel: "Bencina",
+    transmission: "Automática",
+    traction: "4x4",
+    color: "Negro Diamante",
+    bodyType: "SUV",
+    status: "oportunidad",
+    engine: "3.6L V6, 290 hp",
+    featureTag: "Único dueño",
+    tone: "from-neutral-800 via-neutral-950 to-black",
+    description:
+      "Tracción 4x4 real Quadra-Trac, mantención completa registrada y documentación al día.",
+    views: 298,
+    daysListed: 14,
+  },
+  {
+    id: "v3",
+    slug: "audi-q3-35-tfsi-2021",
+    brand: "Audi",
+    model: "Q3",
+    version: "35 TFSI S-Line",
+    year: 2021,
+    price: 26990000,
+    km: 32100,
+    fuel: "Bencina",
+    transmission: "Automática",
+    traction: "4x2",
+    color: "Blanco Glaciar",
+    bodyType: "SUV",
+    status: "nuevo-ingreso",
+    engine: "1.4L Turbo, 150 hp",
+    featureTag: "Bajo kilometraje",
+    tone: "from-stone-300 via-stone-500 to-stone-800",
+    description:
+      "Único dueño, historial de mantención completo en red oficial Audi. Paquete S-Line.",
+    views: 187,
+    daysListed: 2,
+  },
+  {
+    id: "v4",
+    slug: "toyota-hilux-srv-2020",
+    brand: "Toyota",
+    model: "Hilux",
+    version: "SRV 4x4",
+    year: 2020,
+    price: 22990000,
+    km: 64800,
+    fuel: "Diésel",
+    transmission: "Automática",
+    traction: "4x4",
+    color: "Plata Metálico",
+    bodyType: "Camioneta",
+    status: "destacado",
+    engine: "2.8L Turbo Diésel, 177 hp",
+    featureTag: "Tracción 4x4 con reductora",
+    tone: "from-slate-600 via-slate-800 to-black",
+    description:
+      "La camioneta de mayor demanda en la zona: motor diésel confiable y capacidad de carga íntegra.",
+    views: 531,
+    daysListed: 9,
+  },
+  {
+    id: "v5",
+    slug: "bmw-320i-sport-2020",
+    brand: "BMW",
+    model: "Serie 3",
+    version: "320i Sport",
+    year: 2020,
+    price: 23490000,
+    km: 41200,
+    fuel: "Bencina",
+    transmission: "Automática",
+    traction: "4x2",
+    color: "Azul Portimao",
+    bodyType: "Sedán",
+    status: "oportunidad",
+    engine: "2.0L Turbo, 184 hp",
+    featureTag: "Equipamiento Sport Line",
+    tone: "from-blue-950 via-neutral-900 to-black",
+    description: "Sedán deportivo con chasis afinado y mantenciones BMW al día.",
+    views: 264,
+    daysListed: 21,
+  },
+  {
+    id: "v6",
+    slug: "hyundai-tucson-limited-2022",
+    brand: "Hyundai",
+    model: "Tucson",
+    version: "Limited",
+    year: 2022,
+    price: 19990000,
+    km: 22500,
+    fuel: "Híbrido",
+    transmission: "Automática",
+    traction: "AWD",
+    color: "Verde Amazon",
+    bodyType: "SUV",
+    status: "nuevo-ingreso",
+    engine: "1.6L Turbo Híbrido, 230 hp",
+    featureTag: "Garantía de fábrica vigente",
+    tone: "from-emerald-900 via-neutral-900 to-black",
+    description: "Diseño de última generación, motorización híbrida de bajo consumo.",
+    views: 356,
+    daysListed: 4,
+  },
+  {
+    id: "v7",
+    slug: "chevrolet-tracker-premier-2021",
+    brand: "Chevrolet",
+    model: "Tracker",
+    version: "Premier",
+    year: 2021,
+    price: 14990000,
+    km: 38700,
+    fuel: "Bencina",
+    transmission: "Automática",
+    traction: "4x2",
+    color: "Rojo Cajun",
+    bodyType: "SUV",
+    status: "oportunidad",
+    engine: "1.2L Turbo, 132 hp",
+    featureTag: "Rendimiento de combustible",
+    tone: "from-red-950 via-neutral-900 to-black",
+    description: "SUV compacta, ágil en ciudad, con mantenciones al día y bajo consumo.",
+    views: 176,
+    daysListed: 18,
+  },
+  {
+    id: "v8",
+    slug: "kia-sportage-lx-2023",
+    brand: "Kia",
+    model: "Sportage",
+    version: "LX",
+    year: 2023,
+    price: 18990000,
+    km: 15200,
+    fuel: "Bencina",
+    transmission: "Automática",
+    traction: "4x2",
+    color: "Gris Grafito",
+    bodyType: "SUV",
+    status: "nuevo-ingreso",
+    engine: "2.0L, 156 hp",
+    featureTag: "Prácticamente nueva",
+    tone: "from-neutral-700 via-neutral-900 to-black",
+    description: "Muy bajo kilometraje, garantía de fábrica vigente, único dueño.",
+    views: 203,
+    daysListed: 1,
+  },
+  {
+    id: "v9",
+    slug: "nissan-versa-sense-2019",
+    brand: "Nissan",
+    model: "Versa",
+    version: "Sense",
+    year: 2019,
+    price: 9990000,
+    km: 68900,
+    fuel: "Bencina",
+    transmission: "Manual",
+    traction: "4x2",
+    color: "Blanco Perla",
+    bodyType: "Sedán",
+    status: "vendido",
+    engine: "1.6L, 106 hp",
+    featureTag: "Económico de mantener",
+    tone: "from-stone-400 via-stone-600 to-neutral-900",
+    description: "Sedán económico, ideal primer auto, historial de mantención completo.",
+    views: 412,
+    daysListed: 34,
+  },
+  {
+    id: "v10",
+    slug: "ford-ranger-xlt-2020",
+    brand: "Ford",
+    model: "Ranger",
+    version: "XLT 4x4",
+    year: 2020,
+    price: 20990000,
+    km: 55300,
+    fuel: "Diésel",
+    transmission: "Manual",
+    traction: "4x4",
+    color: "Azul Performance",
+    bodyType: "Camioneta",
+    status: "oportunidad",
+    engine: "2.2L Turbo Diésel, 160 hp",
+    featureTag: "Lista para trabajo pesado",
+    tone: "from-blue-900 via-neutral-900 to-black",
+    description: "Camioneta robusta, tracción 4x4, ideal para carga y trabajo en terreno.",
+    views: 289,
+    daysListed: 27,
+  },
+  {
+    id: "v11",
+    slug: "mazda-cx-5-grand-touring-2022",
+    brand: "Mazda",
+    model: "CX-5",
+    version: "Grand Touring",
+    year: 2022,
+    price: 21990000,
+    km: 27800,
+    fuel: "Bencina",
+    transmission: "Automática",
+    traction: "AWD",
+    color: "Rojo Soul Crystal",
+    bodyType: "SUV",
+    status: "destacado",
+    engine: "2.5L, 187 hp",
+    featureTag: "Interior de cuero",
+    tone: "from-red-900 via-neutral-950 to-black",
+    description: "SUV mejor equipada de su categoría, interior de cuero y tracción AWD.",
+    views: 447,
+    daysListed: 7,
+  },
+  {
+    id: "v12",
+    slug: "volkswagen-vento-comfortline-2021",
+    brand: "Volkswagen",
+    model: "Vento",
+    version: "Comfortline",
+    year: 2021,
+    price: 13490000,
+    km: 44100,
+    fuel: "Bencina",
+    transmission: "Automática",
+    traction: "4x2",
+    color: "Plata Reflex",
+    bodyType: "Sedán",
+    status: "vendido",
+    engine: "1.6L, 110 hp",
+    featureTag: "Mantención al día",
+    tone: "from-slate-500 via-slate-700 to-neutral-900",
+    description: "Sedán confiable y espacioso, con mantenciones registradas al día.",
+    views: 198,
+    daysListed: 41,
+  },
+];
+
+export const featuredVehicles = vehicles.filter((v) => v.status === "destacado");
+
+export function getVehicleBySlug(slug: string) {
+  return vehicles.find((v) => v.slug === slug);
+}
+
+export function getRelatedVehicles(vehicle: Vehicle, count = 3) {
+  const related = vehicles
+    .filter((v) => v.id !== vehicle.id)
+    .filter((v) => v.bodyType === vehicle.bodyType || v.brand === vehicle.brand);
+  const rest = vehicles.filter(
+    (v) => v.id !== vehicle.id && !related.includes(v)
+  );
+  return [...related, ...rest].slice(0, count);
+}
