@@ -27,7 +27,7 @@ const STEPS = [
   {
     title: "Exhibición y promoción",
     description:
-      "Tu vehículo entra al showroom digital y físico de MOVITRACK, con fotografía y ficha completa.",
+      "Tu vehículo entra al showroom digital y físico de MOVITRACK, con fotografía y ficha completa. El lavado y la limpieza corren por cuenta de MOVITRACK durante todo el proceso.",
   },
   {
     title: "Venta y liquidación",
@@ -56,6 +56,11 @@ const FAQS = [
     question: "¿Qué documentación necesito para consignar?",
     answer:
       "Padrón, permiso de circulación al día, revisión técnica y verificación de gases vigentes, y certificado de anotaciones vigentes. Lo revisamos en detalle en la evaluación presencial.",
+  },
+  {
+    question: "¿Quién se encarga del lavado y la limpieza del vehículo?",
+    answer:
+      "El lavado y la limpieza del vehículo corren por cuenta de MOVITRACK durante todo el tiempo que esté en consignación con nosotros.",
   },
 ];
 
