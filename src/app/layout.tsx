@@ -8,8 +8,8 @@ const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "AutomotiveBusiness",
   name: "MOVITRACK",
-  image: "https://www.movitrack.cl/logo-movitrack.svg",
-  url: "https://www.movitrack.cl",
+  image: "https://automotrizmovitrack.cl/logo-movitrack.svg",
+  url: "https://automotrizmovitrack.cl",
   telephone: CONTACT.phoneNumber,
   priceRange: "$$",
   address: {
@@ -43,7 +43,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.movitrack.cl"),
+  metadataBase: new URL("https://automotrizmovitrack.cl"),
   title: {
     default: "MOVITRACK — Automotora en Curicó",
     template: "%s · MOVITRACK",

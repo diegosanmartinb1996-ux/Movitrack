@@ -13,7 +13,7 @@ import { getAllVehicles, getVehicleBySlug, getRelatedVehicles } from "@/lib/cata
 import { formatCLP, formatKm } from "@/lib/utils";
 import { whatsappLink, CONTACT } from "@/lib/contact";
 
-const BASE_URL = "https://www.movitrack.cl";
+const BASE_URL = "https://automotrizmovitrack.cl";
 
 export const revalidate = 60;
 

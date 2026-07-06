@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllVehicles } from "@/lib/catalog";
 
-const BASE_URL = "https://www.movitrack.cl";
+const BASE_URL = "https://automotrizmovitrack.cl";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
