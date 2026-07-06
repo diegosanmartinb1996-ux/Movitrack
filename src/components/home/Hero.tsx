@@ -11,10 +11,11 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, MapPin } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { AMBIENT } from "@/lib/images";
+import { CONTACT } from "@/lib/contact";
 
 const ROTATING = ["auto", "SUV", "sedán", "camioneta", "4x4"];
 
@@ -213,7 +214,8 @@ export default function Hero() {
           className="mt-8 max-w-xl text-lg leading-relaxed text-white/85"
         >
           Compra, venta y consignación de vehículos seleccionados en Curicó.
-          Explora nuestro catálogo y coordina tu visita.
+          Con 16 años en el mercado, explora nuestro catálogo y coordina tu
+          visita.
         </motion.p>
 
         <motion.div
@@ -233,9 +235,15 @@ export default function Hero() {
       </Container>
 
       {/* Ticker */}
-      <div className="relative border-t border-white/10 bg-ink/40 backdrop-blur-sm">
-        <div className="flex overflow-hidden">
-          <div className="flex shrink-0 animate-marquee items-center gap-10 py-4 whitespace-nowrap">
+      <div className="relative flex items-stretch border-t border-white/10 bg-ink/40 backdrop-blur-sm">
+        <div className="flex shrink-0 items-center gap-2 border-r border-white/10 px-3 py-4 font-data text-[9px] uppercase tracking-[0.1em] text-white/70 sm:px-6 sm:text-[11px] sm:tracking-[0.14em]">
+          <MapPin size={14} className="shrink-0 text-signal" />
+          <span className="max-w-[38vw] truncate sm:max-w-none sm:whitespace-nowrap">
+            {CONTACT.address}
+          </span>
+        </div>
+        <div className="flex flex-1 overflow-hidden">
+          <div className="flex shrink-0 animate-marquee items-center gap-10 py-4 pl-8 whitespace-nowrap">
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
               <span
                 key={i}

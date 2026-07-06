@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MessageCircle, Phone, ArrowUpRight } from "lucide-react";
+import { MessageCircle, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 import { AMBIENT } from "@/lib/images";
 import { CONTACT, whatsappLink } from "@/lib/contact";
@@ -75,19 +75,19 @@ export default function CTASection() {
             </a>
             <a
               href={`tel:${CONTACT.phoneNumber}`}
-              className="inline-flex items-center justify-center gap-2 border border-white/30 bg-ink/40 px-7 py-4 font-data text-xs uppercase tracking-[0.14em] text-white backdrop-blur-sm transition-colors hover:border-signal hover:text-signal"
+              className="inline-flex items-center justify-center gap-2 border border-white/30 bg-ink/40 px-7 py-4 font-data text-base uppercase tracking-[0.1em] text-white backdrop-blur-sm transition-colors hover:border-signal hover:text-signal"
             >
-              <Phone size={15} />
+              <Phone size={18} />
               {CONTACT.phoneDisplay}
             </a>
           </div>
 
-          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/15 pt-6">
-            <span className="font-data text-[11px] uppercase tracking-[0.14em] text-white/70">
+          <div className="mt-9 flex flex-col gap-3 border-t border-white/15 pt-6">
+            <span className="flex items-center gap-2 font-data text-sm uppercase tracking-[0.08em] text-white">
+              <MapPin size={17} className="text-signal" />
               {CONTACT.address}
             </span>
-            <span className="hidden h-3 w-px bg-white/20 sm:block" aria-hidden />
-            <span className="font-data text-[11px] uppercase tracking-[0.14em] text-white/70">
+            <span className="font-data text-[11px] uppercase tracking-[0.14em] text-white/60">
               {CONTACT.hours}
             </span>
           </div>
