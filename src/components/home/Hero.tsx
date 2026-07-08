@@ -24,6 +24,8 @@ const TICKER_ITEMS = [
   "VENTA",
   "CONSIGNACIÓN",
   "RECEPCIÓN EN PARTE DE PAGO",
+  "PAGO CON TARJETAS",
+  "CRÉDITO AUTOMOTRIZ",
   "CURICÓ · REGIÓN DEL MAULE",
 ];
 
@@ -247,7 +249,7 @@ export default function Hero() {
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
               <span
                 key={i}
-                className="flex items-center gap-10 font-data text-xs uppercase tracking-[0.2em] text-white/55"
+                className="flex items-center gap-10 font-data text-xs uppercase tracking-[0.2em] text-white/85"
               >
                 {item}
                 <span className="text-signal">/</span>

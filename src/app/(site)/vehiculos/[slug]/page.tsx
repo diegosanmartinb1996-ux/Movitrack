@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Phone, MessageCircle, CalendarCheck, Gauge, Fuel, Cog, Calendar } from "lucide-react";
+import { Phone, MessageCircle, CalendarCheck, Gauge, Fuel, Cog, Calendar, CreditCard } from "lucide-react";
 import Container from "@/components/ui/Container";
 import StatusTag from "@/components/ui/StatusTag";
 import Button from "@/components/ui/Button";
@@ -181,6 +181,10 @@ export default async function VehiclePage({
                     Agendar visita
                   </Button>
                 </div>
+                <p className="flex items-center gap-2 text-sm text-white/90">
+                  <CreditCard size={18} className="shrink-0 text-signal" />
+                  Aceptamos pago con tarjetas y crédito automotriz
+                </p>
               </div>
             )}
           </div>
