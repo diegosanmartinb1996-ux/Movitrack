@@ -1,46 +1,43 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { X } from "lucide-react";
 import VehicleMedia from "@/components/ui/VehicleMedia";
 import { cn } from "@/lib/utils";
 import type { Vehicle } from "@/data/vehicles";
 
 const ANGLES = ["Frontal 3/4", "Lateral", "Interior", "Trasera"];
+const VISIBLE_THUMBS = 8;
+const MAX_PHOTOS = 16;
 
 export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
   const [active, setActive] = useState(0);
+  const [showAll, setShowAll] = useState(false);
   const images = vehicle.images ?? [];
   const hasPhotos = images.length > 0;
+  const gallery = images.slice(0, MAX_PHOTOS);
+  const extraCount = gallery.length - VISIBLE_THUMBS;
 
-  const stripRef = useRef<HTMLDivElement>(null);
-  const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
-
-  function onPointerDown(e: React.PointerEvent) {
-    if (!stripRef.current) return;
-    drag.current = {
-      active: true,
-      startX: e.clientX,
-      startScroll: stripRef.current.scrollLeft,
-      moved: false,
+  useEffect(() => {
+    if (!showAll) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setShowAll(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
     };
-  }
-  function onPointerMove(e: React.PointerEvent) {
-    if (!drag.current.active || !stripRef.current) return;
-    const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 3) drag.current.moved = true;
-    stripRef.current.scrollLeft = drag.current.startScroll - dx;
-  }
-  function onPointerUp() {
-    drag.current.active = false;
-  }
+  }, [showAll]);
 
   if (hasPhotos) {
     return (
       <div>
-        <div className="bracket-frame relative aspect-[16/9] overflow-hidden bg-ink-soft">
+        <div className="bracket-frame relative aspect-[16/10] overflow-hidden bg-ink-soft">
           <Image
-            src={images[active]}
+            src={gallery[active]}
             alt={`${vehicle.brand} ${vehicle.model} ${vehicle.version}`}
             fill
             priority
@@ -48,36 +45,63 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
             className="object-cover"
           />
         </div>
-        {images.length > 1 && (
+        {gallery.length > 1 && (
+          <div className="mt-3 grid grid-cols-4 gap-3">
+            {gallery.slice(0, VISIBLE_THUMBS).map((src, i) => {
+              const isLastVisible = i === VISIBLE_THUMBS - 1 && extraCount > 0;
+              return (
+                <button
+                  key={src}
+                  onClick={() => (isLastVisible ? setShowAll(true) : setActive(i))}
+                  className={cn(
+                    "relative aspect-[4/3] overflow-hidden border transition-colors",
+                    i === active ? "border-signal" : "border-white/10 hover:border-white/30"
+                  )}
+                >
+                  <Image src={src} alt="" fill sizes="120px" className="object-cover" />
+                  {isLastVisible && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-ink/70 font-data text-sm text-white">
+                      +{extraCount} fotos
+                    </div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {showAll && (
           <div
-            ref={stripRef}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={onPointerUp}
-            onPointerLeave={onPointerUp}
-            className="mt-3 flex cursor-grab gap-3 overflow-x-auto pb-1 active:cursor-grabbing"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink/95 p-4 backdrop-blur-sm"
+            onClick={() => setShowAll(false)}
           >
-            {images.slice(0, 16).map((src, i) => (
-              <button
-                key={src}
-                onClick={() => {
-                  if (!drag.current.moved) setActive(i);
-                }}
-                className={cn(
-                  "relative aspect-[4/3] h-20 shrink-0 select-none overflow-hidden border transition-colors sm:h-24",
-                  i === active ? "border-signal" : "border-white/10 hover:border-white/30"
-                )}
-              >
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  draggable={false}
-                  sizes="120px"
-                  className="pointer-events-none object-cover"
-                />
-              </button>
-            ))}
+            <button
+              onClick={() => setShowAll(false)}
+              className="absolute right-4 top-4 text-white/70 transition-colors hover:text-white"
+              aria-label="Cerrar galería"
+            >
+              <X size={28} />
+            </button>
+            <div
+              className="grid max-h-[85vh] w-full max-w-4xl grid-cols-3 gap-3 overflow-y-auto sm:grid-cols-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {gallery.map((src, i) => (
+                <button
+                  key={src}
+                  onClick={() => {
+                    setActive(i);
+                    setShowAll(false);
+                  }}
+                  className={cn(
+                    "relative aspect-[4/3] overflow-hidden border transition-colors",
+                    i === active ? "border-signal" : "border-white/10 hover:border-white/30"
+                  )}
+                >
+                  <Image src={src} alt="" fill sizes="200px" className="object-cover" />
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>
