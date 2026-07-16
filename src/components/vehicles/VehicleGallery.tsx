@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import VehicleMedia from "@/components/ui/VehicleMedia";
 import { cn } from "@/lib/utils";
@@ -13,10 +13,32 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
   const images = vehicle.images ?? [];
   const hasPhotos = images.length > 0;
 
+  const stripRef = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
+
+  function onPointerDown(e: React.PointerEvent) {
+    if (!stripRef.current) return;
+    drag.current = {
+      active: true,
+      startX: e.clientX,
+      startScroll: stripRef.current.scrollLeft,
+      moved: false,
+    };
+  }
+  function onPointerMove(e: React.PointerEvent) {
+    if (!drag.current.active || !stripRef.current) return;
+    const dx = e.clientX - drag.current.startX;
+    if (Math.abs(dx) > 3) drag.current.moved = true;
+    stripRef.current.scrollLeft = drag.current.startScroll - dx;
+  }
+  function onPointerUp() {
+    drag.current.active = false;
+  }
+
   if (hasPhotos) {
     return (
       <div>
-        <div className="bracket-frame relative aspect-[16/10] overflow-hidden bg-ink-soft">
+        <div className="bracket-frame relative aspect-[16/9] overflow-hidden bg-ink-soft">
           <Image
             src={images[active]}
             alt={`${vehicle.brand} ${vehicle.model} ${vehicle.version}`}
@@ -27,13 +49,22 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
           />
         </div>
         {images.length > 1 && (
-          <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
+          <div
+            ref={stripRef}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerLeave={onPointerUp}
+            className="mt-3 flex cursor-grab gap-3 overflow-x-auto pb-1 active:cursor-grabbing"
+          >
             {images.slice(0, 16).map((src, i) => (
               <button
                 key={src}
-                onClick={() => setActive(i)}
+                onClick={() => {
+                  if (!drag.current.moved) setActive(i);
+                }}
                 className={cn(
-                  "relative aspect-[4/3] w-20 shrink-0 overflow-hidden border transition-colors sm:w-24",
+                  "relative aspect-[4/3] h-20 shrink-0 select-none overflow-hidden border transition-colors sm:h-24",
                   i === active ? "border-signal" : "border-white/10 hover:border-white/30"
                 )}
               >
@@ -41,8 +72,9 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
                   src={src}
                   alt=""
                   fill
+                  draggable={false}
                   sizes="120px"
-                  className="object-cover"
+                  className="pointer-events-none object-cover"
                 />
               </button>
             ))}
