@@ -27,13 +27,13 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
           />
         </div>
         {images.length > 1 && (
-          <div className="mt-3 grid grid-cols-4 gap-3">
-            {images.slice(0, 8).map((src, i) => (
+          <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
+            {images.slice(0, 16).map((src, i) => (
               <button
                 key={src}
                 onClick={() => setActive(i)}
                 className={cn(
-                  "relative aspect-[4/3] overflow-hidden border transition-colors",
+                  "relative aspect-[4/3] w-20 shrink-0 overflow-hidden border transition-colors sm:w-24",
                   i === active ? "border-signal" : "border-white/10 hover:border-white/30"
                 )}
               >
