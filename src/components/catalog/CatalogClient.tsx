@@ -76,8 +76,9 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
             destacado: 0,
             "nuevo-ingreso": 1,
             oportunidad: 2,
-            reservado: 3,
-            vendido: 4,
+            "precio-rebajado": 3,
+            reservado: 4,
+            vendido: 5,
           };
           return rank[a.status] - rank[b.status];
         }

@@ -98,6 +98,7 @@ export const vehiculo = defineType({
           { title: "Destacado", value: "destacado" },
           { title: "Nuevo ingreso", value: "nuevo-ingreso" },
           { title: "Oportunidad", value: "oportunidad" },
+          { title: "Precio rebajado", value: "precio-rebajado" },
           { title: "Reservado", value: "reservado" },
           { title: "Vendido", value: "vendido" },
         ],

@@ -4,6 +4,7 @@ export type VehicleStatus =
   | "destacado"
   | "nuevo-ingreso"
   | "oportunidad"
+  | "precio-rebajado"
   | "reservado"
   | "vendido";
 
@@ -19,6 +20,10 @@ const STATUS_MAP: Record<VehicleStatus, { label: string; className: string }> = 
   oportunidad: {
     label: "Oportunidad",
     className: "border border-signal text-signal bg-ink/60",
+  },
+  "precio-rebajado": {
+    label: "Precio rebajado",
+    className: "bg-signal-glow text-white",
   },
   reservado: {
     label: "Reservado",
