@@ -5,7 +5,7 @@ export const CONTACT = {
   phoneDisplay: "+56 9 8998 2479",
   address: "Membrillar 386, Curicó, Región del Maule",
   email: "contacto@movitrack.cl",
-  hours: "Lun–Vie 9:30–19:00 · Sáb 9:30–14:00",
+  hours: "Lun–Vie 9:30–18:30 · Sáb 9:30–13:30",
   instagram: "https://www.instagram.com/automotriz_movitrack/",
 };
 
