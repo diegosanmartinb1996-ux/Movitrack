@@ -81,7 +81,7 @@ export default function VehicleCard({
           </p>
           <p className="mt-1 text-xs text-white/55">{vehicle.featureTag}</p>
         </div>
-        <p className="whitespace-nowrap font-display text-lg font-semibold text-signal">
+        <p className="whitespace-nowrap font-display text-lg font-semibold text-white">
           {formatCLP(vehicle.price)}
         </p>
       </div>

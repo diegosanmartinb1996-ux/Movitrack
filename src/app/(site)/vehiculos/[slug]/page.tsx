@@ -130,7 +130,7 @@ export default async function VehiclePage({
             <h1 className="mt-1 font-display text-3xl font-semibold tracking-tight md:text-4xl">
               {vehicle.model} <span className="text-white/70">{vehicle.version}</span>
             </h1>
-            <p className="mt-4 font-display text-3xl font-semibold text-signal">
+            <p className="mt-4 font-display text-3xl font-semibold text-white">
               {formatCLP(vehicle.price)}
             </p>
 
