@@ -85,7 +85,7 @@ export const vehiculo = defineType({
       title: "Tipo de vehículo",
       type: "string",
       options: {
-        list: ["SUV", "Sedán", "Camioneta", "Hatchback", "Van"],
+        list: ["SUV", "Sedán", "Camioneta", "Hatchback", "Van", "Furgón"],
       },
       validation: (r) => r.required(),
     }),

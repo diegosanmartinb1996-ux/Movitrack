@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import type { CatalogFilters } from "@/components/catalog/CatalogClient";
 
-const BODY_TYPES = ["SUV", "Sedán", "Camioneta", "Hatchback", "Van"];
+const BODY_TYPES = ["SUV", "Sedán", "Camioneta", "Hatchback", "Van", "Furgón"];
 const FUELS = ["Bencina", "Diésel", "Híbrido", "Eléctrico"];
 const TRANSMISSIONS = ["Automática", "Manual"];
 const PRICE_CEILINGS = [10000000, 15000000, 20000000, 25000000, 30000000];
