@@ -29,9 +29,10 @@ export default function Pagination({
         onClick={() => goTo(Math.max(1, page - 1))}
         disabled={page === 1}
         aria-label="Página anterior"
-        className="flex h-9 w-9 items-center justify-center border border-white/20 text-white/70 transition-colors hover:border-signal hover:text-signal disabled:opacity-30 disabled:hover:border-white/20 disabled:hover:text-white/70"
+        className="flex h-9 items-center justify-center gap-1.5 border border-white/20 px-3 text-white/70 transition-colors hover:border-signal hover:text-signal disabled:opacity-30 disabled:hover:border-white/20 disabled:hover:text-white/70"
       >
         <ChevronLeft size={16} />
+        <span className="font-data text-xs text-white">Página anterior</span>
       </button>
 
       {pages.map((p) => (
@@ -51,8 +52,9 @@ export default function Pagination({
         onClick={() => goTo(Math.min(totalPages, page + 1))}
         disabled={page === totalPages}
         aria-label="Página siguiente"
-        className="flex h-9 w-9 items-center justify-center border border-white/20 text-white/70 transition-colors hover:border-signal hover:text-signal disabled:opacity-30 disabled:hover:border-white/20 disabled:hover:text-white/70"
+        className="flex h-9 items-center justify-center gap-1.5 border border-white/20 px-3 text-white/70 transition-colors hover:border-signal hover:text-signal disabled:opacity-30 disabled:hover:border-white/20 disabled:hover:text-white/70"
       >
+        <span className="font-data text-xs text-white">Página siguiente</span>
         <ChevronRight size={16} />
       </button>
     </div>
