@@ -32,6 +32,7 @@ const SORT_OPTIONS = [
   { value: "km-asc", label: "Menor kilometraje" },
   { value: "precio-asc", label: "Precio: menor a mayor" },
   { value: "precio-desc", label: "Precio: mayor a menor" },
+  { value: "alfabetico", label: "Alfabético (A-Z)" },
 ];
 
 const PAGE_SIZE = 8;
@@ -71,6 +72,8 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
           return a.price - b.price;
         case "precio-desc":
           return b.price - a.price;
+        case "alfabetico":
+          return `${a.brand} ${a.model}`.localeCompare(`${b.brand} ${b.model}`);
         default: {
           const rank: Record<string, number> = {
             destacado: 0,
