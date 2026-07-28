@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import VehicleMedia from "@/components/ui/VehicleMedia";
 import { cn } from "@/lib/utils";
 import type { Vehicle } from "@/data/vehicles";
@@ -14,15 +14,24 @@ const MAX_PHOTOS = 16;
 export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
   const [active, setActive] = useState(0);
   const [showAll, setShowAll] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const images = vehicle.images ?? [];
   const hasPhotos = images.length > 0;
   const gallery = images.slice(0, MAX_PHOTOS);
   const extraCount = gallery.length - VISIBLE_THUMBS;
 
+  const goPrev = () => setActive((i) => (i === 0 ? gallery.length - 1 : i - 1));
+  const goNext = () => setActive((i) => (i === gallery.length - 1 ? 0 : i + 1));
+
   useEffect(() => {
-    if (!showAll) return;
+    if (!showAll && !lightboxOpen) return;
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setShowAll(false);
+      if (e.key === "Escape") {
+        setShowAll(false);
+        setLightboxOpen(false);
+      }
+      if (lightboxOpen && e.key === "ArrowLeft") goPrev();
+      if (lightboxOpen && e.key === "ArrowRight") goNext();
     }
     document.addEventListener("keydown", onKeyDown);
     document.body.style.overflow = "hidden";
@@ -30,20 +39,54 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = "";
     };
-  }, [showAll]);
+  }, [showAll, lightboxOpen, gallery.length]);
 
   if (hasPhotos) {
     return (
       <div>
-        <div className="bracket-frame relative aspect-[16/10] overflow-hidden bg-ink-soft">
-          <Image
-            src={gallery[active]}
-            alt={`${vehicle.brand} ${vehicle.model} ${vehicle.version}`}
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 60vw"
-            className="object-cover"
-          />
+        <div className="bracket-frame group relative aspect-[16/10] w-full overflow-hidden bg-ink-soft">
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(true)}
+            aria-label="Ver foto en grande"
+            className="absolute inset-0 cursor-zoom-in"
+          >
+            <Image
+              src={gallery[active]}
+              alt={`${vehicle.brand} ${vehicle.model} ${vehicle.version}`}
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 60vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-ink/0 transition-colors group-hover:bg-ink/30">
+              <ZoomIn
+                size={32}
+                className="text-white opacity-0 transition-opacity group-hover:opacity-100"
+              />
+            </div>
+          </button>
+
+          {gallery.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={() => goPrev()}
+                aria-label="Foto anterior"
+                className="absolute left-3 top-1/2 z-10 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-ink/60 text-white transition-colors hover:bg-signal"
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <button
+                type="button"
+                onClick={() => goNext()}
+                aria-label="Foto siguiente"
+                className="absolute right-3 top-1/2 z-10 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-ink/60 text-white transition-colors hover:bg-signal"
+              >
+                <ChevronRight size={32} />
+              </button>
+            </>
+          )}
         </div>
         {gallery.length > 1 && (
           <div className="mt-3 grid grid-cols-4 gap-3">
@@ -67,6 +110,65 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
                 </button>
               );
             })}
+          </div>
+        )}
+
+        {lightboxOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink/95 p-4 backdrop-blur-sm"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="absolute right-4 top-4 z-10 text-white/70 transition-colors hover:text-white"
+              aria-label="Cerrar foto"
+            >
+              <X size={28} />
+            </button>
+
+            {gallery.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goPrev();
+                  }}
+                  aria-label="Foto anterior"
+                  className="absolute left-2 top-1/2 z-10 flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-ink/60 text-white transition-colors hover:bg-signal sm:left-6"
+                >
+                  <ChevronLeft size={36} />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goNext();
+                  }}
+                  aria-label="Foto siguiente"
+                  className="absolute right-2 top-1/2 z-10 flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-ink/60 text-white transition-colors hover:bg-signal sm:right-6"
+                >
+                  <ChevronRight size={36} />
+                </button>
+              </>
+            )}
+
+            <div
+              className="relative h-[80vh] w-full max-w-5xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={gallery[active]}
+                alt={`${vehicle.brand} ${vehicle.model} ${vehicle.version}`}
+                fill
+                sizes="100vw"
+                className="object-contain"
+              />
+            </div>
+
+            {gallery.length > 1 && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 font-data text-xs text-white/70">
+                {active + 1} / {gallery.length}
+              </div>
+            )}
           </div>
         )}
 
