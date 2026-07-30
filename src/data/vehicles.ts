@@ -13,7 +13,7 @@ export type Vehicle = {
   transmission: "Automática" | "Manual";
   traction: "4x2" | "4x4" | "AWD";
   color: string;
-  bodyType: "SUV" | "Sedán" | "Camioneta" | "Hatchback" | "Van";
+  bodyType: "SUV" | "Sedán" | "Camioneta" | "Camión" | "Hatchback" | "Van" | "Furgón";
   status: VehicleStatus;
   engine: string;
   featureTag: string;

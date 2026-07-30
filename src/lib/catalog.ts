@@ -8,8 +8,10 @@ const TONE_BY_BODY: Record<string, string> = {
   SUV: "from-neutral-800 via-neutral-900 to-black",
   Sedán: "from-slate-700 via-neutral-900 to-black",
   Camioneta: "from-stone-700 via-neutral-900 to-black",
+  Camión: "from-stone-800 via-neutral-900 to-black",
   Hatchback: "from-zinc-700 via-neutral-900 to-black",
   Van: "from-neutral-700 via-neutral-900 to-black",
+  Furgón: "from-neutral-700 via-neutral-900 to-black",
 };
 
 const VEHICLES_QUERY = `*[_type == "vehiculo" && defined(slug.current)] | order(_createdAt desc){
