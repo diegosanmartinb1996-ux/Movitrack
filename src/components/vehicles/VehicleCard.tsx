@@ -17,7 +17,6 @@ export default function VehicleCard({
   index?: string;
 }) {
   const { isFavorite, toggleFavorite } = useFavorites();
-  const sold = vehicle.status === "vendido";
   const favorite = isFavorite(vehicle.id);
 
   return (
@@ -29,23 +28,16 @@ export default function VehicleCard({
             alt={`${vehicle.brand} ${vehicle.model} ${vehicle.version}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            className={cn(
-              "object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]",
-              sold && "grayscale"
-            )}
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
         ) : (
           <VehicleMedia
             tone={vehicle.tone}
             label={`${vehicle.brand} ${vehicle.model}`}
             index={index}
-            className={cn(
-              "h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]",
-              sold && "grayscale"
-            )}
+            className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
         )}
-        {sold && <div className="absolute inset-0 z-[5] bg-ink/55" aria-hidden />}
 
         <div className="absolute left-4 bottom-4 z-10 flex gap-2">
           <StatusTag status={vehicle.status} />
