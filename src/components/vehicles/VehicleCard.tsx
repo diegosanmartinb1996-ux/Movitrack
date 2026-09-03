@@ -65,7 +65,7 @@ export default function VehicleCard({
             <p className="font-data text-[11px] uppercase tracking-[0.16em] text-white/80">
               {vehicle.brand}
             </p>
-            <h3 className="mt-1 font-display text-xl font-semibold tracking-tight">
+            <h3 className="mt-1 line-clamp-2 min-h-[2.5em] font-display text-xl font-semibold leading-tight tracking-tight">
               {vehicle.model} <span className="text-white/85">{vehicle.version}</span>
             </h3>
           </div>
