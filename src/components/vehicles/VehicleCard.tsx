@@ -59,23 +59,26 @@ export default function VehicleCard({
           <ArrowUpRight size={16} />
         </div>
       </div>
-
-      <div className="mt-5 flex items-start justify-between gap-4">
-        <div>
-          <p className="font-data text-[11px] uppercase tracking-[0.16em] text-white/60">
-            {vehicle.brand}
+      <div className="mt-5">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="font-data text-[11px] uppercase tracking-[0.16em] text-white/80">
+              {vehicle.brand}
+            </p>
+            <h3 className="mt-1 font-display text-xl font-semibold tracking-tight">
+              {vehicle.model} <span className="text-white/85">{vehicle.version}</span>
+            </h3>
+          </div>
+          <p className="whitespace-nowrap font-display text-xl font-semibold text-white">
+            {formatCLP(vehicle.price)}
           </p>
-          <h3 className="mt-1 font-display text-xl font-semibold tracking-tight">
-            {vehicle.model} <span className="text-white/70">{vehicle.version}</span>
-          </h3>
-          <p className="mt-2 font-data text-xs uppercase tracking-[0.1em] text-white/60">
-            {vehicle.year} · {formatKm(vehicle.km)} · {vehicle.transmission}
-          </p>
-          <p className="mt-1 text-xs text-white/55">{vehicle.featureTag}</p>
         </div>
-        <p className="whitespace-nowrap font-display text-lg font-semibold text-white">
-          {formatCLP(vehicle.price)}
+        <p className="mt-3 font-data text-[13px] uppercase tracking-[0.08em] text-white/90">
+          {vehicle.year} · {formatKm(vehicle.km)} · {vehicle.transmission}
         </p>
+        {vehicle.featureTag && (
+          <p className="mt-1.5 text-[13px] text-white/75">{vehicle.featureTag}</p>
+        )}
       </div>
     </Link>
   );

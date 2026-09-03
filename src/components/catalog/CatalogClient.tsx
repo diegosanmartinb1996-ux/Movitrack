@@ -117,14 +117,14 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
 
       <div>
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
-          <p className="font-data text-xs uppercase tracking-[0.14em] text-white/65">
+          <p className="font-data text-xs uppercase tracking-[0.14em] text-white/85">
             {filtered.length} vehículo{filtered.length !== 1 && "s"} en venta
           </p>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileFiltersOpen(true)}
-              className="flex items-center gap-2 border border-white/20 px-3 py-2 font-data text-[11px] uppercase tracking-[0.14em] text-white/70 lg:hidden"
+              className="flex items-center gap-2 border border-white/20 px-3 py-2 font-data text-[11px] uppercase tracking-[0.14em] text-white/85 lg:hidden"
             >
               <SlidersHorizontal size={14} />
               Filtros
@@ -151,7 +151,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
                 <p className="font-display text-2xl font-semibold">
                   Pronto, nuevo stock
                 </p>
-                <p className="max-w-sm text-sm text-white/70">
+                <p className="max-w-sm text-sm text-white/80">
                   Estamos preparando nuestros vehículos. Escríbenos por WhatsApp y
                   te contamos qué tenemos disponible.
                 </p>
@@ -159,7 +159,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
             ) : (
               <>
                 <p className="font-display text-2xl font-semibold">Sin resultados</p>
-                <p className="max-w-sm text-sm text-white/70">
+                <p className="max-w-sm text-sm text-white/80">
                   No hay vehículos que coincidan con estos filtros. Prueba ajustando
                   el precio, año o marca.
                 </p>
