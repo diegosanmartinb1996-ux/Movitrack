@@ -107,7 +107,7 @@ export default async function VehiclePage({
       <JsonLd data={vehicleSchema} />
       <JsonLd data={breadcrumbSchema} />
       <Container>
-        <nav className="flex flex-wrap items-center gap-2 font-data text-[11px] uppercase tracking-[0.14em] text-white/60">
+        <nav className="flex flex-wrap items-center gap-2 font-data text-[11px] uppercase tracking-[0.14em] text-white/75">
           <Link href="/catalogo" className="hover:text-white">
             Catálogo
           </Link>
@@ -124,11 +124,11 @@ export default async function VehiclePage({
 
           <div className="lg:pt-2">
             <StatusTag status={vehicle.status} />
-            <p className="mt-4 font-data text-xs uppercase tracking-[0.16em] text-white/60">
+            <p className="mt-4 font-data text-sm font-semibold uppercase tracking-[0.16em] text-white/90">
               {vehicle.brand}
             </p>
             <h1 className="mt-1 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-              {vehicle.model} <span className="text-white/70">{vehicle.version}</span>
+              {vehicle.model} <span className="text-white/80">{vehicle.version}</span>
             </h1>
             <p className="mt-4 font-display text-3xl font-semibold text-white">
               {formatCLP(vehicle.price)}
@@ -141,7 +141,7 @@ export default async function VehiclePage({
                 <div key={label} className="flex items-start gap-3">
                   <Icon size={18} className="mt-0.5 shrink-0 text-signal" />
                   <div>
-                    <p className="font-data text-[10px] uppercase tracking-[0.14em] text-white/60">
+                    <p className="font-data text-[10px] uppercase tracking-[0.14em] text-white/75">
                       {label}
                     </p>
                     <p className="mt-0.5 text-sm text-white">{value}</p>
@@ -150,7 +150,7 @@ export default async function VehiclePage({
               ))}
             </div>
 
-            <p className="mt-6 font-data text-xs uppercase tracking-[0.14em] text-white/60">
+            <p className="mt-6 font-data text-xs uppercase tracking-[0.14em] text-white/85">
               {vehicle.engine} · {vehicle.color} · {vehicle.traction}
             </p>
 
