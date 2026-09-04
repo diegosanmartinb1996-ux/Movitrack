@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 export type VehicleStatus =
   | "destacado"
   | "nuevo-ingreso"
+  | "disponible"
   | "oportunidad"
   | "precio-rebajado"
   | "reservado"
@@ -11,6 +12,7 @@ export type VehicleStatus =
 const STATUS_LABELS: Record<VehicleStatus, string> = {
   destacado: "Destacado",
   "nuevo-ingreso": "Nuevo ingreso",
+  disponible: "Disponible",
   oportunidad: "Oportunidad",
   "precio-rebajado": "Precio rebajado",
   reservado: "Reservado",

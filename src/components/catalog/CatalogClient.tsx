@@ -80,8 +80,9 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
             "nuevo-ingreso": 1,
             oportunidad: 2,
             "precio-rebajado": 3,
-            reservado: 4,
-            vendido: 5,
+            disponible: 4,
+            reservado: 5,
+            vendido: 6,
           };
           return rank[a.status] - rank[b.status];
         }
