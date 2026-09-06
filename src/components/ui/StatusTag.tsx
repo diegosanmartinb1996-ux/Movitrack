@@ -29,7 +29,7 @@ export default function StatusTag({
   return (
     <span
       className={cn(
-        "inline-flex items-center bg-white px-2.5 py-1 font-data text-[10px] font-semibold uppercase tracking-[0.16em] text-ink",
+        "inline-flex items-center bg-white px-2.5 py-1.5 font-data text-[11px] font-semibold uppercase tracking-[0.14em] text-ink",
         className
       )}
     >

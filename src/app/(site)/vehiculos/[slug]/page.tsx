@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Phone, MessageCircle, CalendarCheck, Gauge, Fuel, Cog, Calendar, CreditCard } from "lucide-react";
+import { Phone, MessageCircle, CalendarCheck, Gauge, Fuel, Cog, Calendar } from "lucide-react";
 import Container from "@/components/ui/Container";
 import StatusTag from "@/components/ui/StatusTag";
 import Button from "@/components/ui/Button";
 import VehicleGallery from "@/components/vehicles/VehicleGallery";
+import PaymentMethods from "@/components/vehicles/PaymentMethods";
 import VehicleCard from "@/components/vehicles/VehicleCard";
 import JsonLd from "@/components/seo/JsonLd";
 import type { Vehicle } from "@/data/vehicles";
@@ -181,10 +182,7 @@ export default async function VehiclePage({
                     Agendar visita
                   </Button>
                 </div>
-                <p className="flex items-center gap-2 text-sm text-white/90">
-                  <CreditCard size={18} className="shrink-0 text-signal" />
-                  Aceptamos pago con tarjetas y crédito automotriz
-                </p>
+                <PaymentMethods />
               </div>
             )}
           </div>
@@ -195,7 +193,7 @@ export default async function VehiclePage({
             <h2 className="font-display text-2xl font-semibold tracking-tight">
               Vehículos similares
             </h2>
-            <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((v, i) => (
                 <VehicleCard key={v.id} vehicle={v} index={String(i + 1).padStart(2, "0")} />
               ))}

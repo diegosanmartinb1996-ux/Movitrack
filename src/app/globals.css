@@ -98,3 +98,28 @@ body {
 .mask-fade-b {
   mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
+
+/* Banda diagonal de esquina para estados terminales (vendido / reservado) */
+.corner-ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 128px;
+  height: 128px;
+  overflow: hidden;
+  z-index: 15;
+  pointer-events: none;
+}
+
+/* La banda se centra sobre la diagonal: right = -(ancho banda - lado)/2. */
+.corner-ribbon > span {
+  position: absolute;
+  top: 30px;
+  right: -26px;
+  display: block;
+  width: 180px;
+  padding: 6px 0;
+  text-align: center;
+  transform: rotate(45deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}

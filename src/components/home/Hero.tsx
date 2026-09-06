@@ -139,7 +139,6 @@ export default function Hero() {
         className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-ink to-transparent"
         aria-hidden
       />
-      <div className="bg-grid absolute inset-0 opacity-30" aria-hidden />
       <div
         className="absolute -top-1/4 right-0 h-[80vh] w-[80vh] rounded-full bg-signal/10 blur-[160px]"
         aria-hidden

@@ -27,7 +27,7 @@ export default function ShowroomReveal({ vehicles }: { vehicles: Vehicle[] }) {
           </Button>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           {showcase.map((vehicle, i) => (
             <motion.div
               key={vehicle.id}
@@ -35,6 +35,7 @@ export default function ShowroomReveal({ vehicles }: { vehicles: Vehicle[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full"
             >
               <VehicleCard vehicle={vehicle} index={`0${i + 1}`} />
             </motion.div>

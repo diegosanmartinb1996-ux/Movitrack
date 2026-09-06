@@ -168,7 +168,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
             )}
           </div>
         ) : (
-          <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {paged.map((vehicle, i) => (
               <VehicleCard key={vehicle.id} vehicle={vehicle} index={String(i + 1).padStart(2, "0")} />
             ))}
