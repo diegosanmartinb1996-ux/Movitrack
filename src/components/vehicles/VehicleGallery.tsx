@@ -103,7 +103,7 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
                 >
                   <Image src={src} alt="" fill sizes="120px" className="object-cover" />
                   {isLastVisible && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-ink/70 font-data text-sm text-white">
+                    <div className="absolute inset-0 flex items-center justify-center bg-ink/70 font-body font-medium tabular-nums text-sm text-white">
                       +{extraCount} fotos
                     </div>
                   )}
@@ -165,7 +165,7 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
             </div>
 
             {gallery.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 font-data text-xs text-white/70">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 font-body font-medium tabular-nums text-[13px] text-white/70">
                 {active + 1} / {gallery.length}
               </div>
             )}

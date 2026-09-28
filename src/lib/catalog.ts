@@ -56,6 +56,21 @@ function cleanMultiline(text?: string) {
     .trim();
 }
 
+/**
+ * Unifica marcas escritas distinto ("Mercedes benz", "Mercedes Benz", "Mercedes-Benz"):
+ * se usa la escritura con más mayúsculas, así "BMW" no pasa a "Bmw".
+ */
+function unifyBrands(vehicles: Vehicle[]): Vehicle[] {
+  const key = (brand: string) => brand.toLocaleLowerCase("es").replace(/[^\p{L}\p{N}]/gu, "");
+  const capitals = (brand: string) => (brand.match(/\p{Lu}/gu) ?? []).length;
+  const best = new Map<string, string>();
+  for (const { brand } of vehicles) {
+    const current = best.get(key(brand));
+    if (!current || capitals(brand) > capitals(current)) best.set(key(brand), brand);
+  }
+  return vehicles.map((v) => ({ ...v, brand: best.get(key(v.brand)) ?? v.brand }));
+}
+
 function mapSanityVehicle(doc: SanityVehicle): Vehicle {
   const daysListed = Math.max(
     0,
@@ -115,7 +130,7 @@ export async function getAllVehicles(): Promise<Vehicle[]> {
       {},
       { next: { revalidate: 60 } }
     );
-    return Array.isArray(docs) ? docs.map(mapSanityVehicle) : [];
+    return Array.isArray(docs) ? unifyBrands(docs.map(mapSanityVehicle)) : [];
   } catch {
     return [];
   }

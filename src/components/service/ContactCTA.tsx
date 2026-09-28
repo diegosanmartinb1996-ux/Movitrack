@@ -1,6 +1,7 @@
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import Container from "@/components/ui/Container";
 import { CONTACT, whatsappLink } from "@/lib/contact";
+import { WhatsAppGlyph } from "@/components/ui/icons";
 
 export default function ContactCTA({
   title,
@@ -24,14 +25,14 @@ export default function ContactCTA({
             href={whatsappLink(whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-[#25D366] px-6 py-3.5 font-data text-xs uppercase tracking-[0.14em] text-white transition-opacity hover:opacity-90"
+            className="flex items-center gap-2 bg-[#25D366] px-6 py-3.5 font-display font-semibold text-[14px] uppercase tracking-[0.06em] text-white transition-opacity hover:opacity-90"
           >
-            <MessageCircle size={16} />
+            <WhatsAppGlyph size={16} />
             Escribir por WhatsApp
           </a>
           <a
             href={`tel:${CONTACT.phoneNumber}`}
-            className="flex items-center gap-2 border border-white/25 px-6 py-3.5 font-data text-xs uppercase tracking-[0.14em] text-white/80 hover:border-white"
+            className="flex items-center gap-2 border border-white/25 px-6 py-3.5 font-display font-semibold text-[14px] uppercase tracking-[0.06em] text-white/80 hover:border-white"
           >
             <Phone size={15} />
             {CONTACT.phoneDisplay}

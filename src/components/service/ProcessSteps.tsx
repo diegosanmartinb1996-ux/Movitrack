@@ -16,7 +16,7 @@ export default function ProcessSteps({
         <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
           {steps.map((step, i) => (
             <div key={step.title} className="flex gap-5">
-              <span className="font-data text-2xl font-medium text-signal">
+              <span className="font-display text-2xl font-semibold text-signal">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>

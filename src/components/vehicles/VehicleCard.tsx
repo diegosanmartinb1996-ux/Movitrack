@@ -57,7 +57,7 @@ export default function VehicleCard({
 
         {ribbon ? (
           <div className="corner-ribbon" aria-hidden>
-            <span className="bg-signal font-data text-[10px] font-semibold uppercase tracking-[0.14em] text-white">
+            <span className="bg-signal font-body text-[12px] font-semibold uppercase tracking-[0.08em] text-white">
               {ribbon}
             </span>
           </div>
@@ -84,12 +84,13 @@ export default function VehicleCard({
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <p className="font-data text-xs uppercase tracking-[0.16em] text-white/75">
-          {vehicle.brand}
-        </p>
-        <h3 className="mt-1.5 line-clamp-2 font-display text-xl font-semibold leading-snug tracking-tight text-white">
-          {vehicle.model} <span className="text-white/85">{vehicle.version}</span>
+        {/* Marca y modelo con el mismo peso; la versión va debajo, más discreta */}
+        <h3 className="line-clamp-2 font-display text-2xl font-semibold leading-tight tracking-tight text-white">
+          {vehicle.brand} {vehicle.model}
         </h3>
+        {vehicle.version && (
+          <p className="mt-0.5 line-clamp-1 text-sm font-medium text-white/70">{vehicle.version}</p>
+        )}
         {vehicle.featureTag && (
           <p className="mt-1.5 line-clamp-1 text-sm text-white/70">
             {vehicle.featureTag}
@@ -106,7 +107,7 @@ export default function VehicleCard({
           ].map(({ icon: Icon, label }) => (
             <li
               key={label}
-              className="flex items-center gap-1.5 rounded-md border border-white/15 bg-white/[0.07] px-2.5 py-1.5 font-data text-xs uppercase tracking-[0.06em] text-white/95"
+              className="flex items-center gap-1.5 rounded-md border border-white/15 bg-white/[0.07] px-2.5 py-1.5 font-body font-medium tabular-nums text-[13px] text-white/95"
             >
               <Icon size={13} className="shrink-0 text-white/65" />
               {label}
@@ -116,7 +117,7 @@ export default function VehicleCard({
 
         <div className="mt-4 flex items-end justify-between gap-3 border-t border-white/10 pt-4">
           <div>
-            <p className="font-data text-[11px] uppercase tracking-[0.16em] text-white/60">
+            <p className="font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/60">
               Precio
             </p>
             <p className="mt-1 font-display text-2xl font-semibold leading-none text-white">

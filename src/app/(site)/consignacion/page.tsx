@@ -40,7 +40,7 @@ const FAQS = [
   {
     question: "¿Qué diferencia hay entre consignar y vender directamente a MOVITRACK?",
     answer:
-      "Al consignar, tú sigues siendo el dueño hasta que el vehículo se vende — nosotros lo exhibimos y gestionamos la venta a cambio de una comisión. Al vender directamente, te pagamos de inmediato y el vehículo pasa a ser nuestro.",
+      "Al consignar, tú sigues siendo el dueño hasta que el vehículo se vende. Nosotros lo exhibimos y gestionamos la venta a cambio de una comisión. Al vender directamente, te pagamos de inmediato y el vehículo pasa a ser nuestro.",
   },
   {
     question: "¿Cuánto tiempo toma vender un vehículo consignado?",

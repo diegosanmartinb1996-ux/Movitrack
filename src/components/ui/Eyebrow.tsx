@@ -14,12 +14,11 @@ export default function Eyebrow({
   return (
     <div
       className={cn(
-        "flex items-center gap-3 font-data text-[11px] uppercase tracking-[0.28em]",
+        "flex items-center gap-3 font-display text-[16px] font-semibold uppercase tracking-[0.1em]",
         light ? "text-ink/50" : "text-white/65",
         className
       )}
     >
-      <span className="h-px w-8 bg-signal" aria-hidden />
       {index && <span className="text-signal">{index}</span>}
       <span>{children}</span>
     </div>

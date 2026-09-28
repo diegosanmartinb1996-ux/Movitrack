@@ -32,7 +32,7 @@ export default function Pagination({
         className="flex h-9 items-center justify-center gap-1.5 border border-white/20 px-3 text-white/70 transition-colors hover:border-signal hover:text-signal disabled:opacity-30 disabled:hover:border-white/20 disabled:hover:text-white/70"
       >
         <ChevronLeft size={16} />
-        <span className="font-data text-xs text-white">Página anterior</span>
+        <span className="font-body font-medium tabular-nums text-[13px] text-white">Página anterior</span>
       </button>
 
       {pages.map((p) => (
@@ -40,7 +40,7 @@ export default function Pagination({
           key={p}
           onClick={() => goTo(p)}
           className={cn(
-            "flex h-9 w-9 items-center justify-center font-data text-xs transition-colors",
+            "flex h-9 w-9 items-center justify-center font-body font-medium tabular-nums text-[13px] transition-colors",
             p === page ? "bg-signal text-white" : "text-white/80 hover:text-white"
           )}
         >
@@ -54,7 +54,7 @@ export default function Pagination({
         aria-label="Página siguiente"
         className="flex h-9 items-center justify-center gap-1.5 border border-white/20 px-3 text-white/70 transition-colors hover:border-signal hover:text-signal disabled:opacity-30 disabled:hover:border-white/20 disabled:hover:text-white/70"
       >
-        <span className="font-data text-xs text-white">Página siguiente</span>
+        <span className="font-body font-medium tabular-nums text-[13px] text-white">Página siguiente</span>
         <ChevronRight size={16} />
       </button>
     </div>

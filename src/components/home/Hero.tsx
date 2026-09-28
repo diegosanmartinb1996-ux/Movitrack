@@ -153,9 +153,8 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.8 }}
-        className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 rotate-90 items-center gap-3 font-data text-[10px] uppercase tracking-[0.4em] text-white/40 xl:flex"
+        className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 rotate-90 items-center gap-3 font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/40 xl:flex"
       >
-        <span className="h-px w-10 bg-white/30" />
         Curicó · Maule
       </motion.div>
 
@@ -165,7 +164,7 @@ export default function Hero() {
           animate="show"
           custom={0}
           variants={fadeUp}
-          className="flex items-center gap-3 font-data text-[11px] uppercase tracking-[0.32em] text-white/70"
+          className="flex items-center gap-3 font-display text-[16px] font-semibold uppercase tracking-[0.1em] text-white/90"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-signal" />
           Automotora en Curicó, Región del Maule
@@ -237,7 +236,7 @@ export default function Hero() {
 
       {/* Ticker */}
       <div className="relative flex items-stretch border-t border-white/10 bg-ink/40 backdrop-blur-sm">
-        <div className="flex shrink-0 items-center gap-2 border-r border-white/10 px-3 py-4 font-data text-[9px] uppercase tracking-[0.1em] text-white/70 sm:px-6 sm:text-[11px] sm:tracking-[0.14em]">
+        <div className="flex shrink-0 items-center gap-2 border-r border-white/10 px-3 py-4 font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/70 sm:px-6">
           <MapPin size={14} className="shrink-0 text-signal" />
           <span className="max-w-[38vw] truncate sm:max-w-none sm:whitespace-nowrap">
             {CONTACT.address}
@@ -248,7 +247,7 @@ export default function Hero() {
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
               <span
                 key={i}
-                className="flex items-center gap-10 font-data text-xs uppercase tracking-[0.2em] text-white/85"
+                className="flex items-center gap-10 font-body font-semibold text-[13px] uppercase tracking-[0.08em] text-white/85"
               >
                 {item}
                 <span className="text-signal">/</span>
@@ -264,7 +263,7 @@ export default function Hero() {
         transition={{ delay: 1.4, duration: 0.6 }}
         className="pointer-events-none absolute bottom-24 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/40 md:flex"
       >
-        <span className="font-data text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <span className="font-body font-medium text-[12px] uppercase tracking-[0.08em]">Scroll</span>
         <ArrowDown size={14} className="animate-bounce" />
       </motion.div>
     </section>

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Clock } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Eyebrow from "@/components/ui/Eyebrow";
 import MapEmbed from "@/components/ui/MapEmbed";
-import { InstagramGlyph } from "@/components/ui/icons";
+import { InstagramGlyph, WhatsAppGlyph } from "@/components/ui/icons";
 import { CONTACT, whatsappLink } from "@/lib/contact";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const CHANNELS = [
   {
-    icon: MessageCircle,
+    icon: WhatsAppGlyph,
     label: "WhatsApp",
     value: CONTACT.whatsappDisplay,
     href: whatsappLink(),
@@ -58,7 +58,7 @@ export default function ContactoPage() {
               const content = (
                 <>
                   <Icon size={20} className="text-signal" />
-                  <p className="mt-4 font-data text-[11px] uppercase tracking-[0.16em] text-white/60">
+                  <p className="mt-4 font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/60">
                     {label}
                   </p>
                   <p className="mt-1 text-sm text-white">{value}</p>
@@ -88,7 +88,7 @@ export default function ContactoPage() {
               className="block border border-white/10 p-6 transition-colors hover:border-signal sm:col-span-2"
             >
               <InstagramGlyph size={20} className="text-signal" />
-              <p className="mt-4 font-data text-[11px] uppercase tracking-[0.16em] text-white/60">
+              <p className="mt-4 font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/60">
                 Instagram
               </p>
               <p className="mt-1 text-sm text-white">@automotriz_movitrack</p>

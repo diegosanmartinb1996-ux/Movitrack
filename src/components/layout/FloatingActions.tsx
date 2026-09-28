@@ -1,7 +1,8 @@
 "use client";
 
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone } from "lucide-react";
 import { CONTACT, whatsappLink } from "@/lib/contact";
+import { WhatsAppGlyph } from "@/components/ui/icons";
 
 export default function FloatingActions() {
   return (
@@ -10,7 +11,7 @@ export default function FloatingActions() {
         href={`tel:${CONTACT.phoneNumber}`}
         className="group flex h-12 items-center gap-0 overflow-hidden rounded-full border border-white/15 bg-ink/90 pl-0 text-white shadow-lg backdrop-blur transition-all hover:pl-4"
       >
-        <span className="max-w-0 overflow-hidden whitespace-nowrap font-data text-[11px] uppercase tracking-[0.14em] opacity-0 transition-all duration-300 group-hover:max-w-[140px] group-hover:opacity-100">
+        <span className="max-w-0 overflow-hidden whitespace-nowrap font-display font-semibold text-[13px] uppercase tracking-[0.06em] opacity-0 transition-all duration-300 group-hover:max-w-[140px] group-hover:opacity-100">
           Llamar ahora
         </span>
         <span className="flex h-12 w-12 shrink-0 items-center justify-center">
@@ -24,11 +25,11 @@ export default function FloatingActions() {
         rel="noopener noreferrer"
         className="group flex h-14 items-center gap-0 overflow-hidden rounded-full bg-[#25D366] pl-0 text-white shadow-lg shadow-black/40 transition-all hover:pl-5"
       >
-        <span className="max-w-0 overflow-hidden whitespace-nowrap font-data text-[11px] uppercase tracking-[0.14em] opacity-0 transition-all duration-300 group-hover:max-w-[140px] group-hover:opacity-100">
+        <span className="max-w-0 overflow-hidden whitespace-nowrap font-display font-semibold text-[13px] uppercase tracking-[0.06em] opacity-0 transition-all duration-300 group-hover:max-w-[140px] group-hover:opacity-100">
           WhatsApp
         </span>
         <span className="flex h-14 w-14 shrink-0 items-center justify-center">
-          <MessageCircle size={22} />
+          <WhatsAppGlyph size={22} />
         </span>
       </a>
     </div>

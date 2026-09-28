@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Phone, MessageCircle, CalendarCheck, Gauge, Fuel, Cog, Calendar } from "lucide-react";
+import { Phone, CalendarCheck, Gauge, Fuel, Cog, Calendar } from "lucide-react";
 import Container from "@/components/ui/Container";
 import StatusTag from "@/components/ui/StatusTag";
 import Button from "@/components/ui/Button";
@@ -13,6 +13,7 @@ import type { Vehicle } from "@/data/vehicles";
 import { getAllVehicles, getVehicleBySlug, getRelatedVehicles } from "@/lib/catalog";
 import { formatCLP, formatKm, vehicleTitle } from "@/lib/utils";
 import { whatsappLink, CONTACT } from "@/lib/contact";
+import { WhatsAppGlyph } from "@/components/ui/icons";
 
 const BASE_URL = "https://automotrizmovitrack.cl";
 
@@ -114,7 +115,7 @@ export default async function VehiclePage({
       <JsonLd data={vehicleSchema} />
       <JsonLd data={breadcrumbSchema} />
       <Container>
-        <nav className="flex flex-wrap items-center gap-2 font-data text-[11px] uppercase tracking-[0.14em] text-white/60">
+        <nav className="flex flex-wrap items-center gap-2 font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/60">
           <Link href="/catalogo" className="hover:text-white">
             Catálogo
           </Link>
@@ -131,7 +132,7 @@ export default async function VehiclePage({
 
           <div className="lg:pt-2">
             <StatusTag status={vehicle.status} />
-            <p className="mt-4 font-data text-xs uppercase tracking-[0.16em] text-white/60">
+            <p className="mt-4 font-display text-[16px] font-semibold uppercase tracking-[0.1em] text-white/90">
               {vehicle.brand}
             </p>
             <h1 className="mt-1 font-display text-3xl font-semibold tracking-tight md:text-4xl">
@@ -151,7 +152,7 @@ export default async function VehiclePage({
                 <div key={label} className="flex items-start gap-3">
                   <Icon size={18} className="mt-0.5 shrink-0 text-signal" />
                   <div>
-                    <p className="font-data text-[10px] uppercase tracking-[0.14em] text-white/60">
+                    <p className="font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/60">
                       {label}
                     </p>
                     <p className="mt-0.5 text-sm text-white">{value}</p>
@@ -160,7 +161,7 @@ export default async function VehiclePage({
               ))}
             </div>
 
-            <p className="mt-6 font-data text-xs uppercase tracking-[0.14em] text-white/60">
+            <p className="mt-6 font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/60">
               {/* Solo los datos cargados, sin separadores sueltos */}
               {[vehicle.engine, vehicle.color, vehicle.traction].filter(Boolean).join(" · ")}
             </p>
@@ -175,15 +176,15 @@ export default async function VehiclePage({
                   href={whatsappLink(message)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-[#25D366] px-6 py-4 font-data text-xs uppercase tracking-[0.14em] text-white transition-opacity hover:opacity-90"
+                  className="flex items-center justify-center gap-2 bg-[#25D366] px-6 py-4 font-display font-semibold text-[14px] uppercase tracking-[0.06em] text-white transition-opacity hover:opacity-90"
                 >
-                  <MessageCircle size={16} />
+                  <WhatsAppGlyph size={16} />
                   Consultar por WhatsApp
                 </a>
                 <div className="grid grid-cols-2 gap-3">
                   <a
                     href={`tel:${CONTACT.phoneNumber}`}
-                    className="flex items-center justify-center gap-2 border border-white/20 px-4 py-3.5 font-data text-xs uppercase tracking-[0.14em] text-white/80 hover:border-white"
+                    className="flex items-center justify-center gap-2 border border-white/20 px-4 py-3.5 font-display font-semibold text-[14px] uppercase tracking-[0.06em] text-white/80 hover:border-white"
                   >
                     <Phone size={15} />
                     Llamar

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
 import JsonLd from "@/components/seo/JsonLd";
 import { CONTACT } from "@/lib/contact";
 import "./globals.css";
@@ -36,16 +35,11 @@ const ORGANIZATION_SCHEMA = {
   sameAs: [CONTACT.instagram],
 };
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://automotrizmovitrack.cl"),
   title: {
-    default: "MOVITRACK — Automotora en Curicó",
+    default: "MOVITRACK · Automotora en Curicó",
     template: "%s · MOVITRACK",
   },
   description:
@@ -61,7 +55,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CL",
     siteName: "MOVITRACK",
-    title: "MOVITRACK — Automotora en Curicó",
+    title: "MOVITRACK · Automotora en Curicó",
     description:
       "Compra, venta y consignación de vehículos en Curicó. Explora el catálogo.",
   },
@@ -73,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-CL" className={`${jetbrainsMono.variable} h-full`}>
+    <html lang="es-CL" className="h-full">
       <head>
         <link
           rel="stylesheet"

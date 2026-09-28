@@ -11,7 +11,7 @@ export default function MapEmbed({ className }: { className?: string }) {
   return (
     <div className={cn("relative overflow-hidden border border-white/10", className)}>
       <iframe
-        title={`Ubicación de MOVITRACK — ${CONTACT.address}`}
+        title={`Ubicación de MOVITRACK: ${CONTACT.address}`}
         src={src}
         className="h-full w-full grayscale-[0.3] contrast-[1.05]"
         style={{ border: 0, minHeight: 320 }}

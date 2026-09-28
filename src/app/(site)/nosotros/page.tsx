@@ -92,10 +92,10 @@ export default function NosotrosPage() {
               Visítanos en Curicó
             </h2>
             <p className="mt-4 max-w-md text-white/75">{CONTACT.address}</p>
-            <p className="mt-2 font-data text-sm uppercase tracking-[0.1em] text-white/60">
+            <p className="mt-2 font-body font-medium text-sm uppercase tracking-[0.08em] text-white/60">
               {CONTACT.hours}
             </p>
-            <p className="mt-1 font-data text-sm uppercase tracking-[0.1em] text-white/60">
+            <p className="mt-1 font-body font-medium text-sm uppercase tracking-[0.08em] text-white/60">
               {CONTACT.phoneDisplay}
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function NosotrosPage() {
 
       <ContactCTA
         title="Conversemos"
-        description="Escríbenos por WhatsApp o llama directo — respondemos de lunes a sábado."
+        description="Escríbenos por WhatsApp o llama directo. Respondemos de lunes a sábado."
         whatsappMessage="Hola, quiero más información sobre MOVITRACK."
       />
     </>

@@ -5,7 +5,7 @@ import { PAYMENT_METHODS } from "@/lib/payments";
 export default function PaymentMethods() {
   return (
     <div className="mt-2 rounded-lg border border-white/10 bg-white/[0.03] p-5">
-      <p className="flex items-center gap-2 font-data text-[11px] uppercase tracking-[0.16em] text-white/70">
+      <p className="flex items-center gap-2 font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/70">
         <CreditCard size={15} className="shrink-0 text-signal" />
         Medios de pago
       </p>

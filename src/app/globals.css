@@ -13,7 +13,6 @@
 
   --font-display: "Clash Display", ui-sans-serif, sans-serif;
   --font-body: "General Sans", ui-sans-serif, sans-serif;
-  --font-data: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
 
   --animate-marquee: marquee 32s linear infinite;
 }

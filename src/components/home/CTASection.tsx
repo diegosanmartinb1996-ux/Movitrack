@@ -3,10 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MessageCircle, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import { Phone, MapPin, ArrowUpRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 import { AMBIENT } from "@/lib/images";
 import { CONTACT, whatsappLink } from "@/lib/contact";
+import { WhatsAppGlyph } from "@/components/ui/icons";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -47,8 +48,7 @@ export default function CTASection() {
           transition={{ duration: 0.7, ease }}
           className="max-w-2xl"
         >
-          <div className="flex items-center gap-3 font-data text-[11px] uppercase tracking-[0.3em] text-signal">
-            <span className="h-px w-8 bg-signal" aria-hidden />
+          <div className="flex items-center gap-3 font-display text-[16px] font-semibold uppercase tracking-[0.1em] text-white/90">
             Vende o consigna con nosotros
           </div>
 
@@ -68,14 +68,14 @@ export default function CTASection() {
               href={whatsappLink("Hola, quiero conversar sobre mi vehículo.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#25D366] px-7 py-4 font-data text-xs uppercase tracking-[0.14em] text-white transition-opacity hover:opacity-90"
+              className="inline-flex items-center justify-center gap-2 bg-[#25D366] px-7 py-4 font-display font-semibold text-[14px] uppercase tracking-[0.06em] text-white transition-opacity hover:opacity-90"
             >
-              <MessageCircle size={16} />
+              <WhatsAppGlyph size={16} />
               Escríbenos por WhatsApp
             </a>
             <a
               href={`tel:${CONTACT.phoneNumber}`}
-              className="inline-flex items-center justify-center gap-2 border border-white/30 bg-ink/40 px-7 py-4 font-data text-base uppercase tracking-[0.1em] text-white backdrop-blur-sm transition-colors hover:border-signal hover:text-signal"
+              className="inline-flex items-center justify-center gap-2 border border-white/30 bg-ink/40 px-7 py-4 font-display font-semibold text-base uppercase tracking-[0.06em] text-white backdrop-blur-sm transition-colors hover:border-signal hover:text-signal"
             >
               <Phone size={18} />
               {CONTACT.phoneDisplay}
@@ -83,18 +83,18 @@ export default function CTASection() {
           </div>
 
           <div className="mt-9 flex flex-col gap-3 border-t border-white/15 pt-6">
-            <span className="flex items-center gap-2 font-data text-sm uppercase tracking-[0.08em] text-white">
+            <span className="flex items-center gap-2 font-body font-semibold text-sm uppercase tracking-[0.08em] text-white">
               <MapPin size={17} className="text-signal" />
               {CONTACT.address}
             </span>
-            <span className="font-data text-[11px] uppercase tracking-[0.14em] text-white/60">
+            <span className="font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/60">
               {CONTACT.hours}
             </span>
           </div>
 
           <Link
             href="/consignacion"
-            className="group mt-7 inline-flex items-center gap-1.5 font-data text-[11px] uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-white"
+            className="group mt-7 inline-flex items-center gap-1.5 font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/70 transition-colors hover:text-white"
           >
             Cómo funciona la consignación
             <ArrowUpRight

@@ -48,7 +48,7 @@ export default function Footer() {
             href={CONTACT.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 font-data text-[11px] uppercase tracking-[0.16em] text-white/70 hover:text-signal"
+            className="mt-6 inline-flex items-center gap-2 font-body font-medium text-[12px] uppercase tracking-[0.08em] text-white/70 hover:text-signal"
           >
             <InstagramGlyph />
             @automotriz_movitrack
@@ -58,7 +58,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-8">
           {COLUMNS.map((col) => (
             <div key={col.title}>
-              <h3 className="font-data text-[11px] uppercase tracking-[0.2em] text-signal">
+              <h3 className="font-display text-[16px] font-semibold uppercase tracking-[0.1em] text-white/90">
                 {col.title}
               </h3>
               <ul className="mt-4 space-y-3">
@@ -81,9 +81,9 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <Container className="flex flex-col gap-4 py-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} MOVITRACK — {CONTACT.address}
+            © {new Date().getFullYear()} MOVITRACK · {CONTACT.address}
           </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 font-data uppercase tracking-[0.12em]">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 font-body font-medium uppercase tracking-[0.08em]">
             <span>{CONTACT.phoneDisplay}</span>
             <span>{CONTACT.hours}</span>
           </div>

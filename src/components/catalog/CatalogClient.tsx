@@ -118,14 +118,14 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
 
       <div>
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
-          <p className="font-data text-xs uppercase tracking-[0.14em] text-white/85">
+          <p className="font-body font-medium tabular-nums text-[13px] text-white/85">
             {filtered.length} vehículo{filtered.length !== 1 && "s"} en venta
           </p>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileFiltersOpen(true)}
-              className="flex items-center gap-2 border border-white/20 px-3 py-2 font-data text-[11px] uppercase tracking-[0.14em] text-white/85 lg:hidden"
+              className="flex items-center gap-2 border border-white/20 px-3 py-2 font-display font-semibold text-[13px] uppercase tracking-[0.06em] text-white/85 lg:hidden"
             >
               <SlidersHorizontal size={14} />
               Filtros
@@ -134,7 +134,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
             <select
               value={sortBy}
               onChange={(e) => updateSort(e.target.value)}
-              className="border border-white/20 bg-ink px-3 py-2 font-data text-[11px] uppercase tracking-[0.14em] text-white focus:border-signal focus:outline-none"
+              className="border border-white/20 bg-ink px-3 py-2 font-body font-semibold text-[13px] uppercase tracking-[0.08em] text-white focus:border-signal focus:outline-none"
             >
               {SORT_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -186,7 +186,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
           />
           <div className="absolute inset-y-0 right-0 w-full max-w-xs overflow-y-auto bg-ink px-6 py-6">
             <div className="flex items-center justify-between pb-4">
-              <span className="font-data text-xs uppercase tracking-[0.2em] text-white/70">
+              <span className="font-body font-semibold text-[13px] uppercase tracking-[0.08em] text-white/70">
                 Filtros
               </span>
               <button onClick={() => setMobileFiltersOpen(false)} aria-label="Cerrar filtros">
@@ -201,7 +201,7 @@ export default function CatalogClient({ vehicles }: { vehicles: Vehicle[] }) {
             />
             <button
               onClick={() => setMobileFiltersOpen(false)}
-              className="mt-6 w-full bg-signal py-3 font-data text-xs uppercase tracking-[0.14em] text-white"
+              className="mt-6 w-full bg-signal py-3 font-display font-semibold text-[14px] uppercase tracking-[0.06em] text-white"
             >
               Ver {filtered.length} resultados
             </button>

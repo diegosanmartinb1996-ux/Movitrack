@@ -25,7 +25,7 @@ type ButtonAsButton = BaseProps & {
 type ButtonProps = ButtonAsLink | ButtonAsButton;
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 font-data uppercase tracking-[0.14em] transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal disabled:opacity-40";
+  "group relative inline-flex items-center justify-center gap-2 font-display font-semibold uppercase tracking-[0.06em] transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal disabled:opacity-40";
 
 const variants = {
   solid: "bg-signal text-white hover:bg-signal-glow",
@@ -35,9 +35,9 @@ const variants = {
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-[11px]",
-  md: "px-6 py-3.5 text-xs",
-  lg: "px-8 py-4.5 text-sm",
+  sm: "px-4 py-2 text-[13px]",
+  md: "px-6 py-3.5 text-[14px]",
+  lg: "px-8 py-4.5 text-[15px]",
 };
 
 export default function Button({
