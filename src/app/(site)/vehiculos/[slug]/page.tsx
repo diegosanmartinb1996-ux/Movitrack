@@ -132,12 +132,13 @@ export default async function VehiclePage({
 
           <div className="lg:pt-2">
             <StatusTag status={vehicle.status} />
-            <p className="mt-4 font-display text-[16px] font-semibold uppercase tracking-[0.1em] text-white/90">
-              {vehicle.brand}
-            </p>
-            <h1 className="mt-1 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-              {vehicle.model} <span className="text-white/70">{vehicle.version}</span>
+            {/* Marca y modelo con el mismo peso, como en las tarjetas; la versión va debajo */}
+            <h1 className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+              {vehicle.brand} {vehicle.model}
             </h1>
+            {vehicle.version && (
+              <p className="mt-1 text-lg font-medium text-white/70">{vehicle.version}</p>
+            )}
             <p className="mt-4 font-display text-3xl font-semibold text-white">
               {formatCLP(vehicle.price)}
             </p>
