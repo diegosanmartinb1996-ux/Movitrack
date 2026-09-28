@@ -1,4 +1,12 @@
 import { defineField, defineType } from "sanity";
+import {
+  BODY_TYPES,
+  FUELS,
+  STATUSES,
+  TRACTIONS,
+  TRANSMISSIONS,
+  statusLabel,
+} from "../vehicleOptions";
 
 export const vehiculo = defineType({
   name: "vehiculo",
@@ -57,23 +65,21 @@ export const vehiculo = defineType({
       name: "fuel",
       title: "Combustible",
       type: "string",
-      options: {
-        list: ["Bencina", "Diésel", "Híbrido", "Eléctrico"],
-      },
+      options: { list: [...FUELS], layout: "radio", direction: "horizontal" },
       validation: (r) => r.required(),
     }),
     defineField({
       name: "transmission",
       title: "Transmisión",
       type: "string",
-      options: { list: ["Automática", "Manual"] },
+      options: { list: [...TRANSMISSIONS], layout: "radio", direction: "horizontal" },
       validation: (r) => r.required(),
     }),
     defineField({
       name: "traction",
       title: "Tracción",
       type: "string",
-      options: { list: ["4x2", "4x4", "AWD"] },
+      options: { list: [...TRACTIONS], layout: "radio", direction: "horizontal" },
     }),
     defineField({
       name: "color",
@@ -84,9 +90,7 @@ export const vehiculo = defineType({
       name: "bodyType",
       title: "Tipo de vehículo",
       type: "string",
-      options: {
-        list: ["SUV", "Sedán", "Camioneta", "Camión", "Hatchback", "Van", "Furgón"],
-      },
+      options: { list: [...BODY_TYPES], layout: "radio", direction: "horizontal" },
       validation: (r) => r.required(),
     }),
     defineField({
@@ -94,15 +98,9 @@ export const vehiculo = defineType({
       title: "Estado / Etiqueta",
       type: "string",
       options: {
-        list: [
-          { title: "Destacado", value: "destacado" },
-          { title: "Nuevo ingreso", value: "nuevo-ingreso" },
-          { title: "Disponible", value: "disponible" },
-          { title: "Oportunidad", value: "oportunidad" },
-          { title: "Precio rebajado", value: "precio-rebajado" },
-          { title: "Reservado", value: "reservado" },
-          { title: "Vendido", value: "vendido" },
-        ],
+        list: STATUSES.map((s) => ({ ...s })),
+        layout: "radio",
+        direction: "horizontal",
       },
       initialValue: "nuevo-ingreso",
       validation: (r) => r.required(),
@@ -151,13 +149,19 @@ export const vehiculo = defineType({
       brand: "brand",
       model: "model",
       year: "year",
+      price: "price",
+      km: "km",
       status: "status",
       media: "images.0",
     },
-    prepare({ brand, model, year, status, media }) {
+    prepare({ brand, model, year, price, km, status, media }) {
+      const precio =
+        typeof price === "number" ? `$${price.toLocaleString("es-CL")}` : null;
+      const kms =
+        typeof km === "number" ? `${km.toLocaleString("es-CL")} km` : null;
       return {
-        title: `${brand ?? ""} ${model ?? ""}`.trim(),
-        subtitle: [year, status].filter(Boolean).join(" · "),
+        title: [brand, model, year].filter(Boolean).join(" "),
+        subtitle: [precio, kms, statusLabel(status)].filter(Boolean).join(" · "),
         media,
       };
     },

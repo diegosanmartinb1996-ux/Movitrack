@@ -5,6 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      // El panel de administración no debe aparecer en buscadores.
+      disallow: "/studio",
     },
     sitemap: "https://automotrizmovitrack.cl/sitemap.xml",
   };
