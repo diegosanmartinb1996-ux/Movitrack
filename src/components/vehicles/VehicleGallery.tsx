@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import VehicleMedia from "@/components/ui/VehicleMedia";
-import { cn } from "@/lib/utils";
+import { cn, vehicleTitle } from "@/lib/utils";
 import type { Vehicle } from "@/data/vehicles";
 
 const ANGLES = ["Frontal 3/4", "Lateral", "Interior", "Trasera"];
@@ -53,7 +53,7 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
           >
             <Image
               src={gallery[active]}
-              alt={`${vehicle.brand} ${vehicle.model} ${vehicle.version}`}
+              alt={vehicleTitle(vehicle)}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 60vw"
@@ -157,7 +157,7 @@ export default function VehicleGallery({ vehicle }: { vehicle: Vehicle }) {
             >
               <Image
                 src={gallery[active]}
-                alt={`${vehicle.brand} ${vehicle.model} ${vehicle.version}`}
+                alt={vehicleTitle(vehicle)}
                 fill
                 sizes="100vw"
                 className="object-contain"

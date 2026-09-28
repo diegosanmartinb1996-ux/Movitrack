@@ -13,6 +13,14 @@ export function formatCLP(value: number) {
   }).format(value);
 }
 
+/** Nombre del auto sin espacios dobles cuando falta la versión u otro dato. */
+export function vehicleTitle(
+  v: { brand: string; model: string; version?: string; year?: number },
+  withYear = false
+) {
+  return [v.brand, v.model, v.version, withYear ? v.year : null].filter(Boolean).join(" ");
+}
+
 export function formatKm(value: number) {
   return `${new Intl.NumberFormat("es-CL").format(value)} km`;
 }

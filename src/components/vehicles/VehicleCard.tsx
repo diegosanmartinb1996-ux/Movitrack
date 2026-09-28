@@ -6,7 +6,7 @@ import { ArrowUpRight, CalendarDays, Cog, Gauge, Heart } from "lucide-react";
 import type { Vehicle } from "@/data/vehicles";
 import VehicleMedia from "@/components/ui/VehicleMedia";
 import StatusTag from "@/components/ui/StatusTag";
-import { cn, formatCLP, formatKm } from "@/lib/utils";
+import { cn, formatCLP, formatKm, vehicleTitle } from "@/lib/utils";
 import { useFavorites } from "@/lib/useFavorites";
 
 /** Estados que se muestran como banda diagonal en la esquina, no como etiqueta. */
@@ -35,7 +35,7 @@ export default function VehicleCard({
         {vehicle.images && vehicle.images.length > 0 ? (
           <Image
             src={vehicle.images[0]}
-            alt={`${vehicle.brand} ${vehicle.model} ${vehicle.version}`}
+            alt={vehicleTitle(vehicle)}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"

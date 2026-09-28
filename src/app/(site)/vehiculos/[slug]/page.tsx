@@ -11,7 +11,7 @@ import VehicleCard from "@/components/vehicles/VehicleCard";
 import JsonLd from "@/components/seo/JsonLd";
 import type { Vehicle } from "@/data/vehicles";
 import { getAllVehicles, getVehicleBySlug, getRelatedVehicles } from "@/lib/catalog";
-import { formatCLP, formatKm } from "@/lib/utils";
+import { formatCLP, formatKm, vehicleTitle } from "@/lib/utils";
 import { whatsappLink, CONTACT } from "@/lib/contact";
 
 const BASE_URL = "https://automotrizmovitrack.cl";
@@ -32,8 +32,14 @@ export async function generateMetadata({
   const vehicle = await getVehicleBySlug(slug);
   if (!vehicle) return {};
 
-  const title = `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.year}`;
-  const description = `${title} · ${formatKm(vehicle.km)} · ${vehicle.transmission} · ${formatCLP(vehicle.price)}. ${vehicle.description}`;
+  const title = vehicleTitle(vehicle, true);
+  // En la meta descripción los saltos de línea no sirven: todo en una línea.
+  const description = [
+    `${title} · ${formatKm(vehicle.km)} · ${vehicle.transmission} · ${formatCLP(vehicle.price)}.`,
+    vehicle.description.replace(/\s+/g, " "),
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return {
     title,
@@ -59,12 +65,12 @@ export default async function VehiclePage({
   if (!vehicle) notFound();
 
   const related = await getRelatedVehicles(vehicle, 3);
-  const message = `Hola, me interesa el ${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.year} que vi en el sitio.`;
+  const message = `Hola, me interesa el ${vehicleTitle(vehicle, true)} que vi en el sitio.`;
 
   const vehicleSchema = {
     "@context": "https://schema.org",
     "@type": "Vehicle",
-    name: `${vehicle.brand} ${vehicle.model} ${vehicle.version}`,
+    name: vehicleTitle(vehicle),
     brand: vehicle.brand,
     model: vehicle.model,
     vehicleModelDate: String(vehicle.year),
@@ -135,7 +141,10 @@ export default async function VehiclePage({
               {formatCLP(vehicle.price)}
             </p>
 
-            <p className="mt-6 text-sm leading-relaxed text-white/80">{vehicle.description}</p>
+            {/* whitespace-pre-line respeta las descripciones escritas como lista, una idea por línea */}
+            <p className="mt-6 whitespace-pre-line text-sm leading-relaxed text-white/80">
+              {vehicle.description}
+            </p>
 
             <div className="mt-8 grid grid-cols-2 gap-4 border-y border-white/10 py-6">
               {SPECS(vehicle).map(({ icon: Icon, label, value }) => (
@@ -152,7 +161,8 @@ export default async function VehiclePage({
             </div>
 
             <p className="mt-6 font-data text-xs uppercase tracking-[0.14em] text-white/60">
-              {vehicle.engine} · {vehicle.color} · {vehicle.traction}
+              {/* Solo los datos cargados, sin separadores sueltos */}
+              {[vehicle.engine, vehicle.color, vehicle.traction].filter(Boolean).join(" · ")}
             </p>
 
             {vehicle.status === "vendido" ? (

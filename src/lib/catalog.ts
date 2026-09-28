@@ -41,6 +41,21 @@ type SanityVehicle = {
   images?: unknown[];
 };
 
+/** Quita espacios sobrantes: al inicio, al final y dobles entre palabras. */
+function clean(text?: string) {
+  return (text ?? "").replace(/\s+/g, " ").trim();
+}
+
+/** Como clean, pero respeta los saltos de línea que se escribieron en la descripción. */
+function cleanMultiline(text?: string) {
+  return (text ?? "")
+    .split("\n")
+    .map((line) => line.replace(/[ \t]+/g, " ").trim())
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
 function mapSanityVehicle(doc: SanityVehicle): Vehicle {
   const daysListed = Math.max(
     0,
@@ -66,22 +81,22 @@ function mapSanityVehicle(doc: SanityVehicle): Vehicle {
   return {
     id: doc._id,
     slug: doc.slug ?? doc._id,
-    brand: doc.brand ?? "",
-    model: doc.model ?? "",
-    version: doc.version ?? "",
+    brand: clean(doc.brand),
+    model: clean(doc.model),
+    version: clean(doc.version),
     year: doc.year ?? 0,
     price: doc.price ?? 0,
     km: doc.km ?? 0,
     fuel: (doc.fuel as Vehicle["fuel"]) ?? "Bencina",
     transmission: (doc.transmission as Vehicle["transmission"]) ?? "Automática",
     traction: (doc.traction as Vehicle["traction"]) ?? "4x2",
-    color: doc.color ?? "",
+    color: clean(doc.color),
     bodyType: (doc.bodyType as Vehicle["bodyType"]) ?? "SUV",
     status: (doc.status as Vehicle["status"]) ?? "nuevo-ingreso",
-    engine: doc.engine ?? "",
-    featureTag: doc.featureTag ?? "",
+    engine: clean(doc.engine),
+    featureTag: clean(doc.featureTag),
     tone: TONE_BY_BODY[doc.bodyType ?? ""] ?? "from-neutral-800 via-neutral-900 to-black",
-    description: doc.description ?? "",
+    description: cleanMultiline(doc.description),
     views: 0,
     daysListed,
     images,
