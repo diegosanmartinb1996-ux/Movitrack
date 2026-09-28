@@ -28,9 +28,9 @@ export default function Header() {
             width={110}
             height={120}
             priority
-            className="h-10 w-auto md:h-12"
+            className="h-10 w-auto md:h-12 xl:h-[54px]"
           />
-          <span className="font-display text-2xl font-semibold tracking-[0.02em] md:text-[28px]">
+          <span className="font-display text-2xl font-semibold tracking-[0.02em] md:text-[28px] xl:text-[31px]">
             MOVITRACK
           </span>
         </Link>
