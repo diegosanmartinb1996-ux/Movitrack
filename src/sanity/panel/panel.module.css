@@ -468,9 +468,8 @@
 }
 
 .card {
-  all: unset;
+  position: relative;
   box-sizing: border-box;
-  cursor: pointer;
   background: var(--card);
   border-radius: 14px;
   overflow: hidden;
@@ -480,15 +479,25 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.card:hover {
+.cardClickable:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 0 0.5px var(--line), 0 10px 24px -12px rgba(0, 0, 0, 0.35);
 }
 
-.card:focus-visible,
+.cardClickable:has(.cardHit:focus-visible),
 .cardSel,
 .cardSel:hover {
   box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* Capa que abre el detalle; la etiqueta (z-index 2) queda encima y se puede tocar aparte */
+.cardHit {
+  all: unset;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: pointer;
+  border-radius: inherit;
 }
 
 .row {
@@ -539,6 +548,13 @@
   position: absolute;
   top: 8px;
   left: 8px;
+  z-index: 2;
+}
+
+.rowPill {
+  position: relative;
+  z-index: 2;
+  flex: none;
 }
 
 .cardInfo {
@@ -596,32 +612,126 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: currentColor;
+  background: var(--dot, currentColor);
 }
 
 .pillVenta {
+  --dot: var(--green);
   background: var(--green-soft);
   color: var(--green);
 }
 
 .pillReservado {
+  --dot: var(--orange);
   background: var(--orange-soft);
   color: var(--orange);
 }
 
 .pillVendido {
+  --dot: var(--ink-3);
   background: var(--gray-soft);
   color: var(--ink-2);
 }
 
 .pillBorrador {
+  --dot: var(--accent);
   background: var(--accent-soft);
   color: var(--accent);
 }
 
+/* Sobre la foto: fondo blanco para que se lea, el color va en el punto */
 .photo .pill {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   color: #1d1d1f;
+}
+
+/* Sin "all: unset" para no borrar el color que pone la clase del estado */
+.pillButton {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 3px 6px 3px 8px;
+  cursor: pointer;
+}
+
+.pillButton svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
+}
+
+.pillButton:hover {
+  filter: brightness(0.96);
+  box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.pillButton:focus-visible,
+.pillButton[aria-expanded="true"] {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* Menú para cambiar la etiqueta; se dibuja en la raíz del panel */
+.menu {
+  position: fixed;
+  z-index: 40;
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-radius: 12px;
+  padding: 5px;
+  box-shadow: 0 0 0 0.5px var(--line), 0 18px 40px -12px rgba(0, 0, 0, 0.4);
+  animation: pop 0.14s ease-out;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.menuItem {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 9px;
+  border-radius: 7px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: var(--accent);
+  color: #fff;
+}
+
+.menuItem svg {
+  width: 14px;
+  height: 14px;
+  margin-left: auto;
+}
+
+.menuDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--dot);
+}
+
+.menuSep {
+  height: 0.5px;
+  background: var(--line);
+  margin: 4px 6px;
 }
 
 .empty {
@@ -1096,13 +1206,6 @@
   align-items: start;
 }
 
-.review .card {
-  cursor: default;
-}
-
-.review .card:hover {
-  transform: none;
-}
 
 .checks {
   display: grid;

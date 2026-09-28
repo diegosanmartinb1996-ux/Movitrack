@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ComponentType }
 import { useClient, useColorSchemeValue, useCurrentUser, useWorkspace, type SanityClient } from "sanity";
 import { useRouter } from "sanity/router";
 import { apiVersion } from "@/sanity/env";
-import { statusLabel } from "@/sanity/vehicleOptions";
+import { STATUSES, statusLabel } from "@/sanity/vehicleOptions";
 import {
   VEHICLES_QUERY,
   groupOf,
@@ -31,6 +31,7 @@ import {
   TickIcon,
   TrashIcon,
 } from "./icons";
+import { PanelRootContext } from "./StatusMenu";
 import { StatusPill, VehicleCard, VehiclePhoto } from "./VehicleCard";
 import { VehicleSheet } from "./VehicleSheet";
 import s from "./panel.module.css";
@@ -104,6 +105,7 @@ export function PanelApp({
   const [toast, setToast] = useState<Toast>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [rootEl, setRootEl] = useState<HTMLDivElement | null>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const load = useCallback(
@@ -209,14 +211,14 @@ export function PanelApp({
       scheduleLoad();
       showToast(
         status === "vendido"
-          ? "Marcado como vendido."
+          ? `${vehicleName(v)} marcado como vendido.`
           : status === "reservado"
-            ? "Marcado como reservado."
-            : "De vuelta en venta."
+            ? `${vehicleName(v)} marcado como reservado.`
+            : `${vehicleName(v)} ahora dice "${statusLabel(status)}".`
       );
     } catch (err) {
       console.error(err);
-      showToast("No se pudo cambiar el estado. Intenta de nuevo.", true);
+      showToast("No se pudo cambiar la etiqueta. Intenta de nuevo.", true);
     } finally {
       setBusy(false);
     }
@@ -261,308 +263,302 @@ export function PanelApp({
   const title = q ? "Resultados" : (VIEWS.find((v) => v.key === view)?.label ?? "");
 
   return (
-    <div className={s.root} data-scheme={scheme}>
-      <aside className={s.side} aria-label="Menú del panel">
-        <div className={s.brand}>
-          <div className={s.brandMark}>
-            M<b>.</b>
+    <PanelRootContext.Provider value={rootEl}>
+      <div ref={setRootEl} className={s.root} data-scheme={scheme}>
+        <aside className={s.side} aria-label="Menú del panel">
+          <div className={s.brand}>
+            <div className={s.brandMark}>
+              M<b>.</b>
+            </div>
+            <span className={s.brandName}>MOVITRACK</span>
           </div>
-          <span className={s.brandName}>MOVITRACK</span>
-        </div>
-        {navButton(VIEWS[0])}
-        <div className={s.group}>Autos</div>
-        {VIEWS.slice(1).map(navButton)}
-        <div className={s.group}>Sitio</div>
-        <a className={s.nav} href="/catalogo" target="_blank" rel="noopener noreferrer">
-          <GlobeIcon />
-          Ver catálogo
-        </a>
-        <button
-          type="button"
-          className={s.nav}
-          onClick={onOpenAdvanced}
-        >
-          <SlidersIcon />
-          Vista avanzada
-        </button>
-        <div className={s.sideFoot}>
-          <div className={s.avatar}>
-            {user?.profileImage ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={user.profileImage} alt="" />
-            ) : (
-              initials(user?.name)
-            )}
-          </div>
-          <span className={s.ellipsis}>{user?.name ?? "Sesión iniciada"}</span>
-        </div>
-      </aside>
-
-      <section className={s.main}>
-        <nav className={s.mobileTabs} aria-label="Secciones">
-          {VIEWS.map(navButton)}
-        </nav>
-
-        <header className={s.bar}>
-          <h2 className={s.title}>{title}</h2>
-          <div className={s.capsule} role="group" aria-label="Vista">
-            <button
-              type="button"
-              className={layout === "grid" ? s.capOn : undefined}
-              aria-label="Vista en cuadrícula"
-              aria-pressed={layout === "grid"}
-              onClick={() => setLayout("grid")}
-            >
-              <GridIcon />
-            </button>
-            <button
-              type="button"
-              className={layout === "row" ? s.capOn : undefined}
-              aria-label="Vista en lista"
-              aria-pressed={layout === "row"}
-              onClick={() => {
-                setLayout("row");
-                if (view === "inicio") go("todos");
-              }}
-            >
-              <ListIcon />
-            </button>
-          </div>
-          <label className={s.search}>
-            <SearchIcon />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Buscar marca o modelo"
-              aria-label="Buscar"
-            />
-          </label>
-          <button type="button" className={`${s.btn} ${s.primary}`} onClick={() => setSheet({ mode: "create" })}>
-            <PlusIcon />
-            Subir auto
+          {navButton(VIEWS[0])}
+          <div className={s.group}>Autos</div>
+          {VIEWS.slice(1).map(navButton)}
+          <div className={s.group}>Sitio</div>
+          <a className={s.nav} href="/catalogo" target="_blank" rel="noopener noreferrer">
+            <GlobeIcon />
+            Ver catálogo
+          </a>
+          <button
+            type="button"
+            className={s.nav}
+            onClick={onOpenAdvanced}
+          >
+            <SlidersIcon />
+            Vista avanzada
           </button>
-        </header>
-
-        <div className={`${s.body} ${selected ? s.bodySplit : ""}`}>
-          <div className={s.stack}>
-            {loading ? (
-              <div className={s.empty}>Cargando autos…</div>
-            ) : loadError ? (
-              <div className={s.empty}>
-                <b>No se pudieron cargar los autos</b>
-                <span>Revisa tu conexión a internet.</span>
-                <button type="button" className={`${s.btn} ${s.secondary}`} onClick={load}>
-                  Reintentar
-                </button>
-              </div>
-            ) : showHome ? (
-              <>
-                <p className={s.hello}>
-                  {greeting()}
-                  {user?.name ? `, ${user.name.split(" ")[0]}` : ""}. Así está el inventario hoy.
-                </p>
-                <div className={s.tiles}>
-                  {(
-                    [
-                      ["venta", "En venta", "var(--green)"],
-                      ["reservado", "Reservados", "var(--orange)"],
-                      ["vendido", "Vendidos", "var(--ink-3)"],
-                    ] as const
-                  ).map(([key, label, color]) => (
-                    <button key={key} type="button" className={s.tile} onClick={() => go(key)}>
-                      <span className={s.tileLabel}>
-                        <i className={s.dot} style={{ background: color }} />
-                        {label}
-                      </span>
-                      <span className={s.tileValue}>{counts[key]}</span>
-                    </button>
-                  ))}
-                </div>
-                {vehicles.length ? (
-                  <>
-                    <p className={s.sectionTitle}>Últimos subidos</p>
-                    <div className={s.grid}>
-                      {vehicles.slice(0, 8).map((v) => (
-                        <VehicleCard key={v.id} vehicle={v} selected={v.id === selectedId} onSelect={() => select(v.id)} />
-                      ))}
-                    </div>
-                  </>
-                ) : (
-                  <div className={s.empty}>
-                    <b>Sube tu primer auto</b>
-                    <span>Agrega las fotos y los datos, y queda publicado en el catálogo.</span>
-                    <button type="button" className={`${s.btn} ${s.primary}`} onClick={() => setSheet({ mode: "create" })}>
-                      <PlusIcon />
-                      Subir auto
-                    </button>
-                  </div>
-                )}
-              </>
-            ) : filtered.length ? (
-              <div className={layout === "grid" ? s.grid : s.rows}>
-                {filtered.map((v) => (
-                  <VehicleCard
-                    key={v.id}
-                    vehicle={v}
-                    layout={layout}
-                    selected={v.id === selectedId}
-                    onSelect={() => select(v.id)}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className={s.empty}>
-                <b>{q ? "No hay autos que coincidan" : "No hay autos en esta sección"}</b>
-                <span>{q ? "Prueba con otra marca o modelo." : "Cuando cambies el estado de un auto, aparecerá aquí."}</span>
-              </div>
-            )}
+          <div className={s.sideFoot}>
+            <div className={s.avatar}>
+              {user?.profileImage ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={user.profileImage} alt="" />
+              ) : (
+                initials(user?.name)
+              )}
+            </div>
+            <span className={s.ellipsis}>{user?.name ?? "Sesión iniciada"}</span>
           </div>
+        </aside>
 
-          {selected && (
-            <aside className={s.inspector} aria-label="Detalle del auto">
-              <VehiclePhoto vehicle={selected} width={640} height={440}>
-                <button
-                  type="button"
-                  className={s.closeBtn}
-                  aria-label="Cerrar detalle"
-                  onClick={() => setSelectedId(null)}
-                >
-                  <CloseIcon />
-                </button>
-              </VehiclePhoto>
-              <div className={s.inspectorBody}>
-                <div>
-                  <h3 className={s.inspectorTitle}>{vehicleName(selected)}</h3>
-                  <div className={s.muted}>{[selected.version, selected.year].filter(Boolean).join(" · ")}</div>
+        <section className={s.main}>
+          <nav className={s.mobileTabs} aria-label="Secciones">
+            {VIEWS.map(navButton)}
+          </nav>
+
+          <header className={s.bar}>
+            <h2 className={s.title}>{title}</h2>
+            <div className={s.capsule} role="group" aria-label="Vista">
+              <button
+                type="button"
+                className={layout === "grid" ? s.capOn : undefined}
+                aria-label="Vista en cuadrícula"
+                aria-pressed={layout === "grid"}
+                onClick={() => setLayout("grid")}
+              >
+                <GridIcon />
+              </button>
+              <button
+                type="button"
+                className={layout === "row" ? s.capOn : undefined}
+                aria-label="Vista en lista"
+                aria-pressed={layout === "row"}
+                onClick={() => {
+                  setLayout("row");
+                  if (view === "inicio") go("todos");
+                }}
+              >
+                <ListIcon />
+              </button>
+            </div>
+            <label className={s.search}>
+              <SearchIcon />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Buscar marca o modelo"
+                aria-label="Buscar"
+              />
+            </label>
+            <button type="button" className={`${s.btn} ${s.primary}`} onClick={() => setSheet({ mode: "create" })}>
+              <PlusIcon />
+              Subir auto
+            </button>
+          </header>
+
+          <div className={`${s.body} ${selected ? s.bodySplit : ""}`}>
+            <div className={s.stack}>
+              {loading ? (
+                <div className={s.empty}>Cargando autos…</div>
+              ) : loadError ? (
+                <div className={s.empty}>
+                  <b>No se pudieron cargar los autos</b>
+                  <span>Revisa tu conexión a internet.</span>
+                  <button type="button" className={`${s.btn} ${s.secondary}`} onClick={load}>
+                    Reintentar
+                  </button>
                 </div>
-                <div className={s.priceLine}>
-                  <span className={s.bigPrice}>
-                    {typeof selected.price === "number" ? formatCLP(selected.price) : "Sin precio"}
-                  </span>
-                  <StatusPill vehicle={selected} />
-                </div>
-                {selected.onlyDraft && (
-                  <p className={s.note}>
-                    Este auto todavía no se ve en el sitio. Ábrelo con Editar y publícalo.
+              ) : showHome ? (
+                <>
+                  <p className={s.hello}>
+                    {greeting()}
+                    {user?.name ? `, ${user.name.split(" ")[0]}` : ""}. Así está el inventario hoy.
                   </p>
-                )}
-                <dl className={s.specs}>
-                  <dt>Kilometraje</dt>
-                  <dd>{typeof selected.km === "number" ? formatKm(selected.km) : "Sin dato"}</dd>
-                  <dt>Combustible</dt>
-                  <dd>{selected.fuel ?? "Sin dato"}</dd>
-                  <dt>Transmisión</dt>
-                  <dd>{selected.transmission ?? "Sin dato"}</dd>
-                  <dt>Tipo</dt>
-                  <dd>{selected.bodyType ?? "Sin dato"}</dd>
-                  <dt>Etiqueta</dt>
-                  <dd>{statusLabel(selected.status)}</dd>
-                  <dt>Fotos</dt>
-                  <dd>{selected.images.length}</dd>
-                </dl>
-
-                <div className={s.actions}>
-                  {groupOf(selected) === "venta" ? (
+                  <div className={s.tiles}>
+                    {(
+                      [
+                        ["venta", "En venta", "var(--green)"],
+                        ["reservado", "Reservados", "var(--orange)"],
+                        ["vendido", "Vendidos", "var(--ink-3)"],
+                      ] as const
+                    ).map(([key, label, color]) => (
+                      <button key={key} type="button" className={s.tile} onClick={() => go(key)}>
+                        <span className={s.tileLabel}>
+                          <i className={s.dot} style={{ background: color }} />
+                          {label}
+                        </span>
+                        <span className={s.tileValue}>{counts[key]}</span>
+                      </button>
+                    ))}
+                  </div>
+                  {vehicles.length ? (
                     <>
-                      <button
-                        type="button"
-                        className={`${s.btn} ${s.secondary}`}
-                        aria-busy={busy}
-                        onClick={() => !busy && setStatus(selected, "reservado")}
-                      >
-                        <ClockIcon />
-                        Reservado
-                      </button>
-                      <button
-                        type="button"
-                        className={`${s.btn} ${s.secondary}`}
-                        aria-busy={busy}
-                        onClick={() => !busy && setStatus(selected, "vendido")}
-                      >
-                        <TickIcon />
-                        Vendido
-                      </button>
+                      <p className={s.sectionTitle}>Últimos subidos</p>
+                      <div className={s.grid}>
+                        {vehicles.slice(0, 8).map((v) => (
+                          <VehicleCard
+                            key={v.id}
+                            vehicle={v}
+                            selected={v.id === selectedId}
+                            onSelect={() => select(v.id)}
+                            onChangeStatus={(status) => setStatus(v, status)}
+                          />
+                        ))}
+                      </div>
                     </>
                   ) : (
-                    <button
-                      type="button"
-                      className={`${s.btn} ${s.secondary} ${s.full}`}
-                      aria-busy={busy}
-                      onClick={() => !busy && setStatus(selected, "disponible")}
-                    >
-                      Volver a en venta
-                    </button>
+                    <div className={s.empty}>
+                      <b>Sube tu primer auto</b>
+                      <span>Agrega las fotos y los datos, y queda publicado en el catálogo.</span>
+                      <button type="button" className={`${s.btn} ${s.primary}`} onClick={() => setSheet({ mode: "create" })}>
+                        <PlusIcon />
+                        Subir auto
+                      </button>
+                    </div>
                   )}
+                </>
+              ) : filtered.length ? (
+                <div className={layout === "grid" ? s.grid : s.rows}>
+                  {filtered.map((v) => (
+                    <VehicleCard
+                      key={v.id}
+                      vehicle={v}
+                      layout={layout}
+                      selected={v.id === selectedId}
+                      onSelect={() => select(v.id)}
+                      onChangeStatus={(status) => setStatus(v, status)}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className={s.empty}>
+                  <b>{q ? "No hay autos que coincidan" : "No hay autos en esta sección"}</b>
+                  <span>{q ? "Prueba con otra marca o modelo." : "Cuando cambies el estado de un auto, aparecerá aquí."}</span>
+                </div>
+              )}
+            </div>
+
+            {selected && (
+              <aside className={s.inspector} aria-label="Detalle del auto">
+                <VehiclePhoto vehicle={selected} width={640} height={440}>
                   <button
                     type="button"
-                    className={`${s.btn} ${s.primary} ${s.full}`}
-                    onClick={() => setSheet({ mode: "edit", vehicle: selected })}
+                    className={s.closeBtn}
+                    aria-label="Cerrar detalle"
+                    onClick={() => setSelectedId(null)}
                   >
-                    <EditIcon />
-                    Editar datos y fotos
+                    <CloseIcon />
                   </button>
-                  {!selected.onlyDraft && selected.slug && (
-                    <a
-                      className={`${s.btn} ${s.secondary}`}
-                      href={`/vehiculos/${selected.slug}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <GlobeIcon />
-                      Ver en el sitio
-                    </a>
+                </VehiclePhoto>
+                <div className={s.inspectorBody}>
+                  <div>
+                    <h3 className={s.inspectorTitle}>{vehicleName(selected)}</h3>
+                    <div className={s.muted}>{[selected.version, selected.year].filter(Boolean).join(" · ")}</div>
+                  </div>
+                  <div className={s.priceLine}>
+                    <span className={s.bigPrice}>
+                      {typeof selected.price === "number" ? formatCLP(selected.price) : "Sin precio"}
+                    </span>
+                    <StatusPill vehicle={selected} />
+                  </div>
+                  {selected.onlyDraft && (
+                    <p className={s.note}>
+                      Este auto todavía no se ve en el sitio. Ábrelo con Editar y publícalo.
+                    </p>
                   )}
-                  {confirmDelete ? (
+                  <dl className={s.specs}>
+                    <dt>Kilometraje</dt>
+                    <dd>{typeof selected.km === "number" ? formatKm(selected.km) : "Sin dato"}</dd>
+                    <dt>Combustible</dt>
+                    <dd>{selected.fuel ?? "Sin dato"}</dd>
+                    <dt>Transmisión</dt>
+                    <dd>{selected.transmission ?? "Sin dato"}</dd>
+                    <dt>Tipo</dt>
+                    <dd>{selected.bodyType ?? "Sin dato"}</dd>
+                    <dt>Fotos</dt>
+                    <dd>{selected.images.length}</dd>
+                  </dl>
+
+                  <div className={s.field} role="group" aria-label="Etiqueta en el catálogo">
+                    <span className={s.label}>Etiqueta en el catálogo</span>
+                    <div className={s.chips}>
+                      {STATUSES.map((st) => (
+                        <button
+                          key={st.value}
+                          type="button"
+                          aria-pressed={selected.status === st.value}
+                          aria-busy={busy}
+                          className={selected.status === st.value ? s.chipOn : undefined}
+                          onClick={() => !busy && selected.status !== st.value && setStatus(selected, st.value)}
+                        >
+                          {st.title}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={s.actions}>
                     <button
                       type="button"
-                      className={`${s.btn} ${s.danger}`}
-                      aria-busy={busy}
-                      onClick={() => !busy && remove(selected)}
+                      className={`${s.btn} ${s.primary} ${s.full}`}
+                      onClick={() => setSheet({ mode: "edit", vehicle: selected })}
                     >
-                      Confirmar
+                      <EditIcon />
+                      Editar datos y fotos
                     </button>
-                  ) : (
-                    <button
-                      type="button"
-                      className={`${s.btn} ${s.danger}`}
-                      onClick={() => setConfirmDelete(true)}
-                    >
-                      <TrashIcon />
-                      Eliminar
-                    </button>
+                    {!selected.onlyDraft && selected.slug && (
+                      <a
+                        className={`${s.btn} ${s.secondary}`}
+                        href={`/vehiculos/${selected.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <GlobeIcon />
+                        Ver en el sitio
+                      </a>
+                    )}
+                    {confirmDelete ? (
+                      <button
+                        type="button"
+                        className={`${s.btn} ${s.danger}`}
+                        aria-busy={busy}
+                        onClick={() => !busy && remove(selected)}
+                      >
+                        Confirmar
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className={`${s.btn} ${s.danger}`}
+                        onClick={() => setConfirmDelete(true)}
+                      >
+                        <TrashIcon />
+                        Eliminar
+                      </button>
+                    )}
+                  </div>
+                  {confirmDelete && (
+                    <p className={s.note}>
+                      Se borra del catálogo y no se puede deshacer. Si solo se vendió, mejor márcalo como
+                      vendido.
+                    </p>
                   )}
                 </div>
-                {confirmDelete && (
-                  <p className={s.note}>
-                    Se borra del catálogo y no se puede deshacer. Si solo se vendió, mejor márcalo como
-                    vendido.
-                  </p>
-                )}
-              </div>
-            </aside>
-          )}
-        </div>
-      </section>
+              </aside>
+            )}
+          </div>
+        </section>
 
-      {sheet && (
-        <VehicleSheet
-          client={client}
-          vehicle={sheet.mode === "edit" ? sheet.vehicle : undefined}
-          onClose={() => setSheet(null)}
-          onSaved={(message) => {
-            setSheet(null);
-            scheduleLoad();
-            showToast(message);
-          }}
-        />
-      )}
+        {sheet && (
+          <VehicleSheet
+            client={client}
+            vehicle={sheet.mode === "edit" ? sheet.vehicle : undefined}
+            onClose={() => setSheet(null)}
+            onSaved={(message) => {
+              setSheet(null);
+              scheduleLoad();
+              showToast(message);
+            }}
+          />
+        )}
 
-      {toast && (
-        <div className={`${s.toast} ${toast.error ? s.toastError : ""}`} role="status">
-          {toast.error ? <CloseIcon /> : <TickIcon />}
-          {toast.text}
-        </div>
-      )}
-    </div>
+        {toast && (
+          <div className={`${s.toast} ${toast.error ? s.toastError : ""}`} role="status">
+            {toast.error ? <CloseIcon /> : <TickIcon />}
+            {toast.text}
+          </div>
+        )}
+      </div>
+    </PanelRootContext.Provider>
   );
 }

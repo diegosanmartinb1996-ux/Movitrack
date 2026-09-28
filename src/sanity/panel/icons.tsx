@@ -88,6 +88,12 @@ export const SearchIcon = (p: IconProps) => (
   </svg>
 );
 
+export const ChevronDownIcon = (p: IconProps) => (
+  <svg {...base({ strokeWidth: 2.4, ...p })}>
+    <path d="m7 10 5 5 5-5" />
+  </svg>
+);
+
 export const PlusIcon = (p: IconProps) => (
   <svg {...base({ strokeWidth: 2.4, ...p })}>
     <path d="M12 5v14M5 12h14" />

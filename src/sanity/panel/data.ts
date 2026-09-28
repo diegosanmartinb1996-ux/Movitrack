@@ -103,7 +103,7 @@ export function imageUrl(img: SanityImage, width: number, height: number) {
 }
 
 export function vehicleName(v: Pick<PanelVehicle, "brand" | "model">) {
-  return [v.brand, v.model].filter(Boolean).join(" ") || "Auto sin nombre";
+  return [v.brand?.trim(), v.model?.trim()].filter(Boolean).join(" ") || "Auto sin nombre";
 }
 
 export function slugify(text: string) {

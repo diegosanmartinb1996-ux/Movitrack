@@ -587,7 +587,6 @@ export function VehicleSheet({
               <VehicleCard
                 vehicle={preview}
                 coverOverride={photos.find((p) => p.state === "ready")?.preview}
-                as="div"
               />
               <div className={s.checks}>
                 <p>Así se verá en el catálogo</p>
